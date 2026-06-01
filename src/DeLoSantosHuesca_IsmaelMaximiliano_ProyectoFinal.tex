@@ -1,0 +1,2709 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  9pt,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\captionsetup{font=small}
+\singlespacing
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\author{}
+\date{}
+\begin{document}
+
+\input{portada.tex}
+
+
+\newpage
+
+\section{Introducción}\label{introducciuxf3n}
+
+El cerebro es probablemente el órgano más complejo con el que contamos
+los seres humanos, esto implica un mayor número de tipos celulares
+neuronales que se especializan en distintas funciones fisiológicas en
+diferentes estructuras cerebrales como el hipotálamo
+\hyperref[section]{1}. Así mismo, dentro del linaje neuronal las
+neuronas efectoras de señales como tal no son los únicos tipos
+importantes para el correcto funcionamiento de este tejido, pues células
+como las pertenecientes a la glía son fundamentales en muchos procesos
+tanto homeostáticos como de soporte, plasticidad y protección
+\hyperref[section-1]{2}.
+
+Particularmente, los astrocitos son células gliales que participan en el
+mantenimiento homeostático, modulación y creación de sinapsis,
+regulación y soporte de las células neuronales; sin embargo,
+recientemente se ha señalado su papel en procesos como la inflamación,
+teniendo fenotipos específicos de respuesta a estas perturbaciones y en
+función de su interacción con la microglía \hyperref[section-2]{3}. Esto
+provoca la disrupción de funciones basales de estas células, limitando
+su capacidad de sostenimiento para las neuronas e incluso causando
+citotoxicidad.
+
+De esta forma, resulta relevante explorar los mecanismos que influencian
+los procesos neuroinflamatorios y afectan la homeostasis de estas
+células, cuyos fenotipos activados y neurotóxicos se encuentran
+asociados a enfermedades neurodegenerativas como el Alzheimer
+\hyperref[section-3]{4}. Un estudio reciente explora la influencia de la
+dependencia al alcohol (etanol, EtOH) en ratones
+\emph{Aldh1l1-eGFP/Rpl10a} \hyperref[section-4]{5}. En el mismo se
+genera una dependencia a esta sustancia mediante la ingesta constante de
+los individuos para analizar las muestras extraídas del núcleo accumbens
+(NAc) y observar las muestras generales dentro del tejido cerebral y
+particularmente de las células astrocíticas, para las cuales utilizan
+\textbf{TRAP} (\emph{translating ribosome affinity purification},
+muestras IP) y de esta forma aislar solamente los ácidos nucleicos de
+los astrocitos.
+
+\subsection{Planteamiento}\label{planteamiento}
+
+Con el fin de estudiar las diferencias transcripcionales entre las
+condiciones \emph{Dependent} (ratones consumidores de alcohol) y
+\emph{Naive} (sin consumo de alcohol), se seleccionaron 6 réplicas
+biológicas de cada condición bajo el identificador de acceso GEO
+\texttt{GSE308880} que hubieran sido procesadas en el mismo lote y con
+una distribución de sexos lo más uniforme posible para considerarse
+posteriormente en el análisis.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrllllll}
+\hline
+ Run         &      Bases & batch   & Experiment   & Fraction   & sex    & treatment   & sample\_id   \\
+\hline
+ SRR35568686 & 7056141000 & L       & SRX30641926  & IP         & female & Dependent   & Dependent\_1 \\
+ SRR35568638 & 6422935500 & L       & SRX30641950  & IP         & female & Dependent   & Dependent\_2 \\
+ SRR35568687 & 7195563300 & L       & SRX30641926  & IP         & female & Dependent   & Dependent\_3 \\
+ SRR35568639 & 6567543300 & L       & SRX30641950  & IP         & female & Dependent   & Dependent\_4 \\
+ SRR35568650 & 8408655900 & L       & SRX30641944  & IP         & male   & Dependent   & Dependent\_5 \\
+ SRR35568651 & 8532258900 & L       & SRX30641944  & IP         & male   & Dependent   & Dependent\_6 \\
+ SRR35568623 & 6641559600 & L       & SRX30641958  & IP         & female & Naive       & Naive\_1     \\
+ SRR35568626 & 7019469600 & L       & SRX30641956  & IP         & male   & Naive       & Naive\_2     \\
+ SRR35568627 & 7132121400 & L       & SRX30641956  & IP         & male   & Naive       & Naive\_3     \\
+ SRR35568631 & 7998479400 & L       & SRX30641954  & IP         & male   & Naive       & Naive\_4     \\
+ SRR35568622 & 6489525000 & L       & SRX30641958  & IP         & female & Naive       & Naive\_5     \\
+ SRR35568634 & 7475442300 & L       & SRX30641952  & IP         & female & Naive       & Naive\_6     \\
+\hline
+\end{tabular}
+}
+\caption{Matriz de metadatos limpia obtenida de GSE308880 con las muestras seleccionadas }
+\end{table}
+
+\section{Metodología}\label{metodologuxeda}
+
+\subsection{Descarga de los datos y
+QC}\label{descarga-de-los-datos-y-qc}
+
+El primer paso para realizar el DEA es la obtención de todos los datos
+necesarios para cada etapa del análisis, desde los controles de calidad
+(QC) y la limpieza de las secuencias, hasta la cuantificación de los
+conteos y el análisis estadístico. Para ello fueron requeridos los
+siguientes archivos:
+
+\begin{itemize}
+\tightlist
+\item
+  Genoma de referencia en formato FASTA para el alineamiento: se utilizó
+  la misma versión del genoma de referencia de \emph{Mus musculus},
+  \texttt{GRCm39}, pero en su última \emph{release} (M38), incluyendo
+  todas las secuencias (\texttt{ALL}) del genoma completo {[}17{]}, a
+  diferencia de la versión M28 utilizada en el estudio original.
+\item
+  Archivo de anotación: se seleccionó el archivo \emph{Comprehensive
+  gene annotation} para todas las secuencias (\texttt{ALL})
+  correspondiente a la misma versión y \emph{release}
+  (\texttt{GRCm39\ M38}).
+\end{itemize}
+
+\begin{quote}
+Estos archivos fueron descargados mediante los enlaces SFTP de GENCODE
+utilizando el comando \texttt{wget} \hyperref[section]{1}.
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Tabla de metadatos de las muestras: obtenida directamente del
+  \emph{Run Selector} asociado al identificador GEO
+  \href{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE308880}{GSE308880}.
+\item
+  Archivos de secuenciación: todos los correspondientes a las
+  condiciones de interés fueron descargados a través de los
+  identificadores SRR presentes en la tabla de metadatos.
+\end{itemize}
+
+Para el proceso de descarga y control de calidad (QC) se desarrolló un
+\emph{pipeline} en Nextflow que permite realizar ambas tareas
+simultáneamente (\texttt{src/preprocces\_data.nf})
+\hyperref[section-1]{2}.
+
+Una vez descargados los datos, el QC reveló que las secuencias presentan
+un \emph{Phred score} muy alto Figure~\ref{fig-raw-qc-heatmap} , lo que
+indica una alta confianza en la identificación de bases y, en general,
+una buena distribución en las métricas relacionadas con la calidad de la
+secuenciación. Esto sugiere una reacción de secuenciación adecuada,
+observándose únicamente advertencias (\emph{warnings}) en las secuencias
+1 de cada par respecto a la calidad por posición en el \emph{flowcell}.
+Dado que esta advertencia fue uniforme entre las muestras, no representa
+una fuente importante de sesgo.
+
+Sin embargo, no todas las métricas fueron óptimas, por lo que se
+procedió a la limpieza de las secuencias mediante el software
+\texttt{fastp}, el cual permite corregir aquellas regiones que no
+superan completamente el QC. En nuestros datos fue evidente la presencia
+de adaptadores Figure~\ref{fig-raw-adapter-content} , particularmente
+aquellos enriquecidos en secuencias repetitivas como PolyG
+Figure~\ref{fig-raw-gc-content} y PolyA, así como un sesgo hacia bases T
+al inicio de las lecturas Figure~\ref{fig-raw-base-content} . Por ello
+se ejecutó el siguiente paso del \emph{pipeline} de Nextflow
+\texttt{src/preprocces\_data.nf}, especificando las opciones
+\textbf{--trim\_front 1} y \textbf{--trim\_poly\_x}
+\hyperref[section-2]{3}.
+
+Tras la limpieza de los datos se obtuvo un nuevo reporte de MultiQC con
+mejores estadísticas Figure~\ref{fig-clean-qc-heatmap}. Se logró
+corregir parcialmente el principal problema relacionado con la presencia
+de adaptadores, aunque persistieron algunas excepciones en posiciones
+intermedias, manteniendo al mismo tiempo la mayor parte de la longitud
+original de las secuencias. Por su parte, el porcentaje de GC permaneció
+prácticamente sin cambios, lo que podría sugerir contaminación en las
+secuencias, aunque sin afectar significativamente los pasos posteriores.
+De forma similar, la duplicación y la sobre-representación de secuencias
+no fueron corregidas, ya que el objetivo principal del estudio es
+identificar cambios en la expresión génica \href{QC_res}{QC results}.
+
+\subsection{Alineamiento}\label{alineamiento}
+
+Para la etapa de alineamiento, la elección de la herramienta no es
+absoluta, ya que depende de múltiples factores. Algunos de ellos están
+relacionados con limitaciones técnicas menos controlables, como la
+información disponible del organismo estudiado o los recursos
+computacionales de almacenamiento, tiempo y procesamiento. Este último
+factor es una de las principales razones por las que muchos análisis
+optan por utilizar \textbf{\emph{pseudoalineadores}} como
+\texttt{salmon} o \texttt{kallisto}.
+
+Sin embargo, debido a que estas aproximaciones utilizan como referencia
+los transcritos previamente anotados, el espacio de búsqueda se limita
+considerablemente y la asignación de lecturas puede verse afectada por
+la capacidad de la secuenciación para capturar isoformas específicas
+registradas en la anotación.
+
+Por ello, en este trabajo se utilizaron dos alineadores tradicionales
+ampliamente empleados en la literatura. Por un lado, \texttt{HISAT2} es
+reconocido por su bajo consumo de recursos computacionales y menor
+tiempo de ejecución en comparación con otros alineadores tradicionales,
+siendo una opción accesible para estudios de gran escala y mostrando un
+buen desempeño en lecturas cortas {[}18{]}. Por otro lado, se utilizó
+\texttt{STAR}, una herramienta destacada por su alta sensibilidad,
+rendimiento y capacidad de mapeo único {[}19{]}.
+
+A pesar de que \texttt{STAR} suele considerarse un claro
+\emph{trade-off} entre costo computacional y rendimiento, el desempeño
+real para obtener los mejores resultados continúa siendo dependiente del
+contexto y de los datos analizados. Por ello, se evaluó el rendimiento
+de ambas herramientas utilizando las secuencias previamente procesadas
+con \texttt{fastp}. Para ello se utilizó el mismo \emph{pipeline}
+empleado durante la limpieza y descarga, el cual integra ambas
+herramientas para su comparación \hyperref[section-4]{5}.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/alignments/stats/aligned_vs_time.png}
+
+}
+
+\caption{\label{fig-aligned-vs-time}Relación entre la proporción de
+lecturas alineadas y el tiempo de procesamiento por muestra.}
+
+\end{figure}%
+
+Como puede observarse, y en contraste con lo reportado en parte de la
+literatura, \texttt{HISAT2} presentó un menor tiempo de ejecución bajo
+condiciones equivalentes de recursos computacionales. Es posible que
+esta diferencia se deba a un menor consumo de memoria RAM en comparación
+con \texttt{STAR}. Asimismo, \texttt{HISAT2} mostró un mayor porcentaje
+de lecturas alineadas, lo que inicialmente lo posiciona como una
+alternativa atractiva para análisis posteriores.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/alignments/stats/aligned_vs_time.png}
+
+}
+
+\caption{\label{fig-multimapped-vs-unaligned}Relación entre la
+proporción de lecturas multimapeadas y las lecturas no alineadas,
+evaluando la especificidad del alineamiento.}
+
+\end{figure}%
+
+Sin embargo, a diferencia de lo que podría sugerir la Figura 1, el
+desempeño de \texttt{HISAT2} no resulta tan claramente superior. El
+porcentaje de lecturas multimapeadas fue considerablemente mayor que en
+\texttt{STAR}, lo cual es consistente con la menor cantidad de lecturas
+no alineadas observadas. Esto sugiere una mayor capacidad de
+\texttt{HISAT2} para asignar lecturas ambiguas, mientras que
+\texttt{STAR} tiende a descartar aquellas para las cuales no existe una
+asignación suficientemente confiable.
+
+No obstante, al contrastar el porcentaje total de lecturas alineadas con
+el porcentaje de lecturas multimapeadas, puede observarse que la
+fracción de lecturas alineadas de forma única continúa siendo superior
+en \texttt{HISAT2}. Por ello, y con el objetivo de conservar la mayor
+cantidad posible de información biológica, se decidió utilizar las
+matrices generadas por \texttt{HISAT2} para los análisis posteriores.
+
+\subsubsection{Cuantificación}\label{cuantificaciuxf3n}
+
+El \emph{pipeline} utilizado para el alineamiento
+\hyperref[section-4]{5} implementa también la generación de matrices de
+conteo a partir de los alineamientos obtenidos mediante
+\texttt{featureCounts}, herramienta perteneciente al paquete
+\texttt{subread}. Para ello se empleó el archivo de anotación descargado
+previamente \hyperref[section]{1} junto con los parámetros mínimos
+necesarios para su funcionamiento.
+
+Se configuró la herramienta para excluir lecturas multimapeadas y
+considerar todas las lecturas independientemente de su longitud, ya que
+el análisis de QC mostró una distribución uniforme en este aspecto. Como
+resultado, fue posible obtener las matrices de conteo correspondientes a
+\texttt{HISAT2}
+(\texttt{results/count\_matrixes/hisat\_countMatrix.txt}).
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrrrrr}
+\hline
+ Unnamed: 0         &   Dependent\_1 &   Dependent\_2 &   Dependent\_3 &   Dependent\_4 &   Dependent\_5 &   Dependent\_6 &   Naive\_1 &   Naive\_2 &   Naive\_3 &   Naive\_4 &   Naive\_5 &   Naive\_6 \\
+\hline
+ ENSMUSG00000102693 &             0 &             0 &             0 &             0 &             0 &             0 &         0 &         0 &         0 &         0 &         0 &         0 \\
+ ENSMUSG00000064842 &             0 &             0 &             0 &             0 &             0 &             0 &         0 &         0 &         0 &         0 &         0 &         0 \\
+ ENSMUSG00000051951 &            22 &           201 &            16 &           140 &           111 &            84 &        18 &       107 &       119 &        34 &        14 &        66 \\
+ ENSMUSG00000102851 &             0 &             0 &             0 &             0 &             8 &            34 &         0 &         0 &         0 &         0 &         0 &         0 \\
+ ENSMUSG00000103377 &            25 &             8 &            46 &             6 &            32 &            24 &        21 &        26 &        10 &        24 &        36 &        22 \\
+\hline
+\end{tabular}
+}
+\caption{Matriz de conteos hisat2 limpia y con los nombres de las muestras srr asignados}
+\end{table}
+
+Con esta tabla de conteos se procedió al análisis de expresión
+diferencial (DEA), para el cual se utilizó el lenguaje de programación
+\textbf{R}, debido a que cuenta con todas las librerías necesarias para
+llevar a cabo este tipo de análisis estadísticos y bioinformáticos.
+
+\subsection{DEA}\label{dea}
+
+Para este paso se utilizarán las matrices de conteos generadas, así como
+la tabla de metadatos previamente depurada y el archivo
+\emph{transcript-to-gene} (\textbf{t2g}) generado a partir del archivo
+de anotación GTF (command run 6).
+
+\subsubsection{Modularización}\label{modularizaciuxf3n}
+
+Una vez obtenida la matriz de conteos completamente limpia y organizada
+de acuerdo con la tabla de metadatos, se procedió a realizar el análisis
+de expresión diferencial junto con sus distintos pasos. Para ello se
+desarrollaron diversas funciones en \textbf{R} con el objetivo de
+modularizar el código y facilitar la ejecución del análisis de una
+manera más directa y reproducible:
+
+\paragraph{Filtrado de los conteos}\label{filtrado-de-los-conteos}
+
+En una matriz de conteos se encuentran alrededor de 70 mil hasta 200 mil
+transcritos diferentes, de los cuales no todos se encuentran
+diferencialmente expresados o presentan una expresión consistente a lo
+largo de las muestras, por lo que introducen ruido en el cálculo de
+diferentes estimaciones, como la varianza, dentro de las distintas
+herramientas de DEA o en análisis como el PCA.
+
+Para ello se filtran los genes con menor expresión. Para esta tarea
+podríamos utilizar distintas aproximaciones, lo que podría sonar como un
+procedimiento trivial; sin embargo, eliminar información no siempre es
+la mejor opción, por lo que establecer cotas arbitrarias en métricas
+como \textbf{TPM} o \textbf{RPKM} no necesariamente resulta adecuado.
+Para ello se utilizará la función \texttt{filterByExpr} de
+\texttt{edgeR}, la cual, en términos generales, toma como referencia una
+variable de los metadatos para evaluar la consistencia de la expresión
+de un gen a lo largo de las muestras. Esto permite que, si un gen se
+expresa fuertemente en la condición de interés pero no en la otra
+condición, sea considerado y conservado para análisis posteriores,
+mientras que genes con baja expresión o con una expresión inconsistente
+son descartados, disminuyendo así la cantidad de ruido. Todo esto se
+realiza en función del tamaño de biblioteca estimado por la función.
+
+Por lo tanto, esta función y el procedimiento general de filtrado pueden
+estandarizarse para ambas herramientas (\texttt{DESeq2} y
+\texttt{edgeR}).
+
+\textbf{Argumentos:} - \textbf{counts\_obj} (DEA obj): Este es el objeto
+generado por las herramientas sin ningún procedimiento estadístico ni
+transformación aplicada (\texttt{DGEList} para \texttt{edgeR} y
+\texttt{DESeqDataSet} para \texttt{DESeq2}). A grandes rasgos, contiene
+la matriz de conteos y el modelo asociado (dependiendo de la
+herramienta). - \textbf{group} (factor \textbar{} model.matrix): Esta es
+la forma de definir los genes que presentan una expresión consistente a
+lo largo de las muestras. Puede ser un factor correspondiente a la
+variable principal de interés utilizada para el filtrado o el modelo
+completo creado mediante \texttt{model.matrix} (matriz de diseño). -
+\textbf{DEA\_package} (string): Esta es únicamente una bandera para
+indicar qué tipo de objeto se está recibiendo. Debido a que la función
+\texttt{filterByExpr} proviene del paquete \texttt{edgeR}, está más
+especializada para objetos de tipo \texttt{DGEList}, por lo que es
+necesario extraer únicamente la matriz de conteos cuando se trabaja con
+un objeto \texttt{DESeqDataSet} de \texttt{DESeq2}. Para ello se utiliza
+el valor \texttt{"DESeq2"} en esta bandera.
+
+\textbf{Returns:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{counts\_obj}: Corresponde al mismo objeto de entrada, pero
+  filtrado. Es importante conservar tanto la estructura como el tipo de
+  dato original del objeto recibido.
+\end{itemize}
+
+Code \hyperref[filt_func]{Filtrado de los conteos}
+
+\paragraph{Parseo de genes diferencialmente
+expresados}\label{parseo-de-genes-diferencialmente-expresados}
+
+Debido a que el análisis evalúa una gran cantidad de genes, el umbral
+del p-value naturalmente debe establecerse por debajo del valor
+científicamente aceptado de 0.05. Esto se debe a que dicho umbral
+implica esperar aproximadamente un 5\% de falsos positivos. Considerando
+que el número de genes (o transcritos) analizados puede superar
+fácilmente los 20,000, esto podría significar que una gran proporción de
+los genes ``detectados'' como diferencialmente expresados son, por
+definición, falsos positivos (\(20,000 \times 0.05 = 1,000\)).
+
+Por lo tanto, es posible definir una función que filtre los genes
+diferencialmente expresados utilizando umbrales tanto para el log fold
+change como para el adjusted p-value. Esta función agrega una nueva
+columna a la matriz de resultados obtenida del método de DEA, asignando
+las etiquetas \texttt{"NO"}, \texttt{"UP"} y \texttt{"DOWN"}.
+
+Argumentos: - \textbf{res}: \texttt{data.frame} con los resultados del
+DEA. - \textbf{LFC}: Umbral para el log fold change. - \textbf{FDR}:
+Umbral para el adjusted p-value.
+
+Retorna: - \textbf{list}: lsita con:
+
+\begin{itemize}
+\item
+  \textbf{DE\_genes} \texttt{data.frame} con los resultados del DEA,
+  incluyendo la columna \textbf{DE} con las etiquetas \texttt{"NO"},
+  \texttt{"UP"} y \texttt{"DOWN"}.
+\item
+  \textbf{gen\_res\_df} \texttt{data.frame} con las estadisticas
+  generales (numero de gens Diferencialmente expresados)
+\end{itemize}
+
+Code \hyperref[parse_DE]{Parseo de genes diferencialmente expresados}
+
+\paragraph{Ploteo}\label{ploteo}
+
+Una de las mejores formas de representar los resultados de un DEA es
+mediante gráficos. Este enfoque visual permite representar uno de los
+aspectos más importantes del análisis de expresión diferencial: el hecho
+de que un gen con un alto log fold change no necesariamente es un gen
+diferencialmente expresado. Esto se debe a que el término
+\emph{differential} no hace referencia únicamente al cambio en el nivel
+de expresión de un gen, sino también a la confiabilidad estadística de
+dicha observación, representada en este caso por el p-value o el FDR
+ajustado debido a las múltiples pruebas realizadas por los modelos.
+
+\subparagraph{Volcano}\label{volcano}
+
+El volcano plot es una de las mejores formas de complementar la
+información descrita anteriormente, ya que representa el \textbf{fold
+change} y el \textbf{adjusted p-value} (ambos transformados
+logarítmicamente para reescalar los valores) en los ejes x y y,
+respectivamente. Esto permite visualizar simultáneamente tanto la
+magnitud del cambio en expresión como su significancia estadística.
+
+Argumentos: - \textbf{res\_labels}: \texttt{data.frame} con los
+resultados del DEA ya etiquetados. Para ello, el objeto de resultados
+generado por el DEA debe procesarse previamente mediante la función
+\texttt{get\_DE\_genes}. - \textbf{LFC}: Umbral para el log fold change.
+- \textbf{FDR}: Umbral para el adjusted p-value. - \textbf{plot\_name}:
+Nombre del gráfico.
+
+Retorna: - \textbf{volcano\_p}: Objeto de \texttt{ggplot2} que contiene
+el volcano plot.
+
+Code \hyperref[plot_volcano]{Volcano}
+
+\subparagraph{Heatmap}\label{heatmap}
+
+El heatmap es una de las mejores formas de visualizar los resultados de
+un análisis de expresión diferencial, ya que permite representar los
+patrones de expresión de los genes mediante un agrupamiento jerárquico
+(\emph{hierarchical clustering}) tanto de los genes como de las
+muestras. Para ello, es necesario utilizar una matriz de conteos
+normalizada a partir de la cual se calculan los z-scores empleados en la
+representación gráfica.
+
+Argumentos: - \textbf{significant}: \texttt{data.frame} con los
+resultados del DEA ya etiquetados. Al igual que en el volcano plot, el
+objeto de resultados del DEA debe procesarse previamente mediante la
+función \texttt{get\_DE\_genes}. - \textbf{norm\_mat}: Matriz
+normalizada. - \textbf{num\_genes}: Número de genes que serán
+representados en el gráfico. - \textbf{plot\_name}: Nombre del gráfico.
+
+Retorna: - \textbf{heat\_p}: Objeto de \texttt{ggplot2} que contiene el
+heatmap.
+
+Code \hyperref[plot_Heatmap]{Heatmap}
+
+\paragraph{Objeto DEA}\label{objeto-dea}
+
+Por último, el análisis se realizará a partir de un objeto creado
+mediante R6 con el principal objetivo de hacer más explícito el DEA. De
+esta forma, es posible almacenar los métodos y atributos de cada
+análisis de expresión diferencial en una instancia del mismo y, aunque
+nuestros datos no cuentan con un gran número de variables para realizar
+distintos contrastes, este enfoque permite llevar a cabo el DEA de una
+manera más ordenada mediante \texttt{edgeR} o \texttt{DESeq2}.
+
+\subparagraph{Atributos}\label{atributos}
+
+\subparagraph{Instanciables}\label{instanciables}
+
+Estos atributos son los que se deben proporcionar, ya que el objeto no
+los genera por sí solo mediante sus métodos.
+
+\begin{itemize}
+\item
+  \texttt{name\_DE} (\texttt{string}): Nombre del objeto.
+\item
+  \texttt{Count\_matrix} (\texttt{data.frame}): Matriz de conteos cruda.
+\item
+  \texttt{meta\_data} (\texttt{data.frame}): Matriz de metadatos.
+\item
+  \texttt{model} (\texttt{model.matrix}): Matriz de diseño creada
+  mediante \texttt{model.matrix}.
+\item
+  \texttt{contrast} (\texttt{data.frame}): Al igual que el diseño,
+  también debe ser ingresado y corresponde a la matriz con el contraste
+  de interés generada mediante \texttt{makeContrasts}.
+\item
+  \texttt{LFC} (\texttt{float}): Valor de corte para el log fold change
+  (considerar un gen como diferencialmente expresado).
+\item
+  \texttt{FDR} (\texttt{float}): Valor de corte para el p-value ajustado
+  (considerar un gen como diferencialmente expresado).
+\end{itemize}
+
+\subparagraph{Generados}\label{generados}
+
+Por su parte, estos atributos son generados a partir de los métodos
+embebidos en el objeto y corresponden a los resultados tanto del
+análisis exploratorio como del DEA propiamente dicho.
+
+\begin{itemize}
+\item
+  \texttt{vsd} (\texttt{SummarizedExperiment}): Objeto creado durante la
+  previsualización (\texttt{pre\_vi}).
+\item
+  \texttt{PCA\_p} (\texttt{ggplot2}): PCA generado durante la
+  previsualización (\texttt{pre\_vi}).
+\item
+  \texttt{Variance\_p} (\texttt{ggplot2}): Gráfico de partición de
+  varianza generado durante la previsualización (\texttt{pre\_vi}).
+\item
+  \texttt{N\_filtered\_genes} (\texttt{int}): Número de genes
+  conservados tras el filtrado respecto al grupo de interés, calculado
+  durante la previsualización (\texttt{pre\_vi}).
+\item
+  \texttt{DEA\_DESeq2}: Lista con los resultados del análisis de
+  expresión diferencial utilizando \textbf{DESeq2}.
+
+  \begin{itemize}
+  \item
+    \texttt{res} (\texttt{data.frame}): Resultados directos del DEA
+    realizado con \textbf{DESeq2}.
+  \item
+    \texttt{DE\_genes} (\texttt{data.frame}): Objeto \texttt{res}
+    filtrado con las etiquetas utilizadas para identificar genes
+    diferencialmente expresados.
+  \item
+    \texttt{volcano\_plot} (\texttt{ggplot2}): Representación del objeto
+    \texttt{DE\_genes} mediante un volcano plot.
+  \item
+    \texttt{heatmap} (\texttt{ggplot2}): Representación del objeto
+    \texttt{DE\_genes} mediante un heatmap.
+  \item
+    \texttt{norm\_mat}: Matriz normalizada y transformada generada
+    mediante la función \texttt{vst}.
+  \item
+    \texttt{gen\_res}: Resultados generales del DEA, incluyendo el
+    número de genes diferencialmente expresados, sobreexpresados y
+    subexpresados.
+  \end{itemize}
+\item
+  \texttt{DEA\_edgeR}: Lista con los resultados del análisis de
+  expresión diferencial utilizando \textbf{edgeR}.
+
+  \begin{itemize}
+  \item
+    \texttt{res} (\texttt{data.frame}): Resultados directos del DEA
+    realizado con \textbf{edgeR}.
+  \item
+    \texttt{DE\_genes} (\texttt{data.frame}): Objeto \texttt{res}
+    filtrado con las etiquetas utilizadas para identificar genes
+    diferencialmente expresados.
+  \item
+    \texttt{volcano\_plot} (\texttt{ggplot2}): Representación del objeto
+    \texttt{DE\_genes} mediante un volcano plot.
+  \item
+    \texttt{heatmap} (\texttt{ggplot2}): Representación del objeto
+    \texttt{DE\_genes} mediante un heatmap.
+  \item
+    \texttt{norm\_mat}: Matriz normalizada generada mediante
+    \texttt{cpm}, utilizada principalmente para la construcción del
+    heatmap.
+  \item
+    \texttt{gen\_res}: Resultados generales del DEA, incluyendo el
+    número de genes diferencialmente expresados, sobreexpresados y
+    subexpresados.
+  \end{itemize}
+\end{itemize}
+
+\subparagraph{Métodos}\label{muxe9todos}
+
+Por su parte, los métodos son los encargados de realizar tanto la
+previsualización como el DEA, utilizando como base los atributos
+definidos desde el método constructor.
+
+pre\_vi
+
+Naturalmente, este es el primer método que se utiliza y tiene como
+objetivo identificar cuáles son las variables que explican la mayor
+parte de la varianza dentro de nuestros datos. Para ello se emplean dos
+aproximaciones:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{PCA}
+\end{itemize}
+
+El análisis de componentes principales es un método que realiza una
+transformación lineal de los datos mediante la identificación de los
+vectores propios de la matriz de expresión. Este análisis se basa en la
+covarianza de los distintos genes de la matriz; de esta forma, los
+vectores propios representan aquellos componentes que explican la mayor
+proporción de la varianza presente en los datos.
+
+Esto es relevante porque, al representar las muestras mediante estos
+componentes principales, es posible observar cómo se separan entre sí.
+Asimismo, al incorporar las variables experimentales en la
+visualización, se puede determinar si la variable de interés es capaz de
+discriminar las muestras a lo largo de alguno de los componentes
+principales. Del mismo modo, también permite identificar variables que
+no fueron contempladas explícitamente en el diseño experimental pero que
+podrían estar influyendo sobre la varianza de los datos e introduciendo
+posibles efectos de lote.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Partición de varianza}
+\end{itemize}
+
+Se utiliza para observar qué proporción de la varianza total es
+explicada por cada variable presente en la matriz de metadatos. Al igual
+que el PCA, este análisis ayuda a definir qué variables deben
+considerarse dentro del modelo.
+
+En el caso específico de la función \texttt{fitExtractVarPartModel},
+esta ajusta un modelo lineal que posteriormente podría emplearse para
+análisis de expresión diferencial mediante herramientas como
+\texttt{dream} o \texttt{limma-voom} {[}17{]}. Sin embargo, en este
+trabajo se utilizó únicamente para cuantificar la varianza explicada por
+cada variable.
+
+Ambos análisis hacen uso de un objeto \texttt{vst} generado mediante la
+paquetería \texttt{DESeq2}, con el objetivo de obtener una matriz
+normalizada adecuada para el análisis de componentes principales y la
+partición de varianza. Para ello se requiere una variable principal
+(\texttt{var\_main}), normalmente la variable de interés biológico, así
+como una o más covariables para la partición de varianza. La primera
+covariable también se utiliza como referencia secundaria en la
+representación gráfica del PCA. Además, estos procedimientos hacen uso
+de los atributos \texttt{Count\_matrix}, \texttt{meta\_data} y,
+opcionalmente, \texttt{model}.
+
+Expresión diferencial
+
+Por su parte, el análisis de expresión diferencial comprende desde la
+creación de los objetos propios de cada paquete, en este caso
+\texttt{edgeR} y \texttt{DESeq2} (ambos desarrollados dentro de
+Bioconductor), hasta la realización de pruebas de hipótesis basadas en
+contrastes específicos.
+
+Ambas librerías comparten el hecho de modelar los conteos mediante una
+distribución binomial negativa para determinar si los genes están
+diferencialmente expresados. Sin embargo, las diferencias entre ellas
+radican principalmente en la forma en que estiman la dispersión y las
+varianzas antes del modelado. Por ejemplo, \texttt{DESeq2} utiliza
+estrategias de contracción (\emph{shrinkage}) y estimaciones basadas en
+la relación media-varianza, mientras que \texttt{edgeR} emplea
+estimaciones de cuasi-verosimilitud (\emph{quasi-likelihood}).
+
+Para ello se utilizan la matriz de conteos (\texttt{Count\_matrix}), el
+modelo definido mediante \texttt{model.matrix} (\texttt{model}), el
+contraste de interés (\texttt{contrast}, generado mediante
+\texttt{makeContrasts}) y la matriz de metadatos (\texttt{meta\_data}).
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{DESeq2}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Crear el objeto \texttt{DESeqDataSetFromMatrix} utilizando la matriz
+  de conteos (\texttt{Count\_matrix}), la matriz de metadatos
+  (\texttt{meta\_data}) y el modelo (\texttt{model}).
+\item
+  Filtrar los genes poco expresados mediante la función
+  \texttt{filterByExpr} implementada previamente. Debido a que esta
+  función pertenece a \texttt{edgeR}, el filtrado se realiza únicamente
+  sobre la matriz de conteos contenida dentro del objeto y no sobre el
+  objeto completo.
+\item
+  Una vez filtrados los genes, proceder a la normalización y estimación
+  de dispersión mediante la función \texttt{DESeq} aplicada sobre el
+  objeto \texttt{DESeqDataSetFromMatrix}.
+\item
+  Finalmente, realizar el contraste de interés (\texttt{contrast}) y las
+  pruebas de hipótesis correspondientes mediante la función
+  \texttt{results}, obteniendo una tabla con los genes, sus métricas
+  estadísticas y el respectivo log fold change (\texttt{res}).
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{edgeR}
+\end{itemize}
+
+En el caso de esta librería, los pasos son más explícitos y se
+encuentran divididos en una mayor cantidad de etapas:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Crear el objeto \texttt{DGEList} utilizando la matriz de conteos
+  (\texttt{Count\_matrix}) y la información experimental
+  correspondiente.
+\item
+  Filtrar los genes con baja expresión mediante la función
+  \texttt{filterByExpr}.
+\item
+  Normalizar los conteos mediante la función \texttt{calcNormFactors}
+  utilizando el método \textbf{trimmed mean of M-values} (\textbf{TMM}).
+  Este método elimina valores extremos para estimar el tamaño efectivo
+  de biblioteca y calcular factores de normalización.
+\item
+  Estimar la dispersión biológica entre muestras mediante la función
+  \texttt{estimateDisp}.
+\item
+  Ajustar el modelo utilizando una estimación de cuasi-verosimilitud
+  mediante la función \texttt{glmQLFit}.
+\item
+  Realizar la prueba de hipótesis usando el contraste deseado
+  (\texttt{contrast}) mediante \texttt{glmQLFTest}, empleando el modelo
+  ajustado previamente.
+\item
+  Extraer los resultados mediante la función \texttt{topTags}.
+\end{enumerate}
+
+\begin{quote}
+Con el fin de mantener compatibilidad con las funciones utilizadas en
+etapas posteriores del análisis, los nombres de las columnas
+\texttt{"logFC"} y \texttt{"FDR"} generadas por \texttt{edgeR} son
+reemplazados por \texttt{"log2FoldChange"} y \texttt{"padj"}
+respectivamente, ya que representan métricas equivalentes a las
+utilizadas por \texttt{DESeq2}.
+\end{quote}
+
+Code \hyperref[DEA_obj]{Objeto DEA}
+
+\subsubsection{Análisis}\label{anuxe1lisis}
+
+Para el DEA se seleccionó la matriz de conteos generada a partir del
+alineamiento utilizando \texttt{hisat2}. Con esta matriz, la tabla de
+metadatos y bajo el nombre \texttt{"Astrocites\_hisat2\_pr"}, se creó el
+objeto de R6 \texttt{DE\_hisat}.
+
+\paragraph{Análisis exploratorio}\label{anuxe1lisis-exploratorio}
+
+Con el objeto generado se realizó el cálculo de las varianzas y de los
+componentes principales mediante el método \texttt{pre\_vi} descrito
+anteriormente. Para este análisis se eligieron las variables
+\texttt{"treatment"} y \texttt{"sex"} de nuestra matriz de metadatos con
+el objetivo de evaluar la influencia de ambas sobre la dispersión de los
+datos.
+
+Estas variables fueron seleccionadas debido a que la variable principal
+de interés experimental es el tratamiento (\texttt{treatment}), mientras
+que \texttt{sex} es la única de las variables remanentes que presenta
+más de un valor a lo largo de las muestras y, por lo tanto, podría
+contribuir a explicar parte de la variabilidad observada.
+
+El proceso de previsualización permite filtrar los datos en función de
+su nivel de expresión mediante la función
+\texttt{filter\_by\_expression} diseñada anteriormente, conservando un
+total de \textbf{18,305} genes. Esto es relevante, ya que dicha cantidad
+es cercana al número de genes que será utilizado posteriormente en el
+análisis de expresión diferencial y nos permite definir cotas para el
+FDR con mayor confianza.
+
+En particular, al trabajar con un orden de magnitud de \(10^4\) genes,
+un umbral de FDR de \(1 \times 10^{-4}\) resulta razonable, ya que
+implicaría esperar al rededr de un falso positvo.
+
+\subparagraph{PCA}\label{pca}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/DEA/PCA_pre_vi_hisat2.png}
+
+}
+
+\caption{\label{fig-pca-hisat2}Análisis de componentes principales (PCA)
+de la matriz de conteos generada con HISAT2, mostrando la estructura
+global entre muestras.}
+
+\end{figure}%
+
+El PCA muestra una clara separación de las muestras en función de
+nuestra variable de interés (\texttt{treatment}). Sin embargo, ninguno
+de los dos primeros componentes principales (PCs), a pesar de capturar
+una fracción importante de la varianza total, logra separar
+completamente las condiciones experimentales. Esto sugiere que las
+diferencias observadas entre nuestras muestras probablemente estén
+influenciadas por múltiples factores biológicos y técnicos.
+
+Por otra parte, la influencia de la variable \texttt{sex} tampoco
+resulta concluyente en la representación de los primeros componentes
+principales. En este contexto, el análisis de partición de varianza
+puede ser más informativo para determinar qué variables deben
+considerarse dentro del modelo estadístico.
+
+Asimismo, el PCA adelanta que existe una señal biológica asociada al
+tratamiento, pero esta parece ser relativamente discreta y distribuida
+entre múltiples fuentes de variación. Esto se refleja en la proporción
+de varianza que no es capturada por los primeros componentes principales
+y que podría estar contribuyendo a que las muestras no se separen
+completamente en el espacio reducido del PCA.
+
+\subparagraph{Partición de la
+varianza}\label{particiuxf3n-de-la-varianza}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/DEA/VarPart_pre_vi_hisat2.png}
+
+}
+
+\caption{\label{fig-variance-partition-hisat2}Descomposición de la
+varianza explicada en la matriz de conteos HISAT2 para evaluar fuentes
+de variación entre muestras.}
+
+\end{figure}%
+
+Por su parte, el análisis de partición de varianza mostró una influencia
+clara de ambas variables consideradas sobre la variabilidad de nuestros
+datos. Ambas presentaron distribuciones similares en cuanto a la
+proporción de varianza explicada, lo que resulta consistente con la
+naturaleza relativamente discreta de los efectos biológicos que buscamos
+detectar. Estos resultados respaldan la importancia de considerar ambas
+variables dentro del modelo lineal utilizado para el análisis de
+expresión diferencial.
+
+\begin{quote}
+La matriz generada por el alineador STAR mostró distribuciones similares
+durante la previsualización. Sin embargo, estas presentaron un mayor
+nivel de ruido y una separación menos definida entre las muestras en el
+PCA \hyperref[DEA_star]{STAR DEA}.
+\end{quote}
+
+\paragraph{Análisis de expresión
+diferencial}\label{anuxe1lisis-de-expresiuxf3n-diferencial}
+
+Una vez realizada la previsualización de los datos, se procedió a
+ejecutar formalmente el análisis de expresión diferencial. Como se
+observó en los análisis exploratorios anteriores, la variación asociada
+a nuestras condiciones experimentales parece corresponder a un efecto
+relativamente discreto más que a una diferencia marcada entre grupos.
+Asimismo, tanto \texttt{treatment} como \texttt{sex} mostraron una
+contribución apreciable a la variabilidad de los datos, por lo que se
+optó por modelar las diferencias entre condiciones mediante un modelo
+lineal generalizado aditivo que considera ambas variables:
+
+\[y = β_0 + β_{treatment} + β_{sex} + ε\]
+
+Para ello se construyó la matriz de diseño mediante la función
+\texttt{model.matrix}, utilizando los factores previamente convertidos a
+partir de la tabla de metadatos. Asimismo, el contraste seleccionado
+para las pruebas de hipótesis realizadas con la herramienta
+\texttt{DESeq2} fue el correspondiente a nuestra variable de interés,
+\texttt{treatment}, comparando los individuos dependientes de etOH
+(\texttt{Dependent}) frente a aquellos sin consumo de alcohol
+(\texttt{Naive}).
+
+Este contraste fue evaluado teniendo en cuenta la variabilidad asociada
+a la variable \texttt{sex}, la cual fue incluida dentro del modelo.
+Finalmente, la matriz de contraste se generó mediante la función
+\texttt{makeContrast}.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Sample & ALL & DOWN & UP \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Astrocites\_hisat2\_pr\_DESeq2 & 123 & 50 & 73 \\
+\end{longtable}
+}
+
+En esta configuración, definida a través de las herramientas de
+previsualización, se lograron identificar un total de \textbf{123 genes
+diferencialmente expresados}, de los cuales \textbf{73 se encuentran
+sobreexpresados} en los individuos que desarrollaron dependencia al
+alcohol, mientras que \textbf{50 se encuentran subexpresados}.
+
+Es importante señalar que los genes clasificados como subexpresados no
+deben interpretarse simplemente como genes sobreexpresados en los
+individuos sin consumo de alcohol, sino como genes cuya expresión
+relativa es menor en la condición \texttt{Dependent} respecto a la
+condición \texttt{Naive}, de acuerdo con el contraste definido en el
+modelo.
+
+Code \href{DEA_prin}{DEA principal}
+
+\subparagraph{Volcano plot}\label{volcano-plot}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/DEA/Volcano_DEA_deseq2_hisat2.png}
+
+}
+
+\caption{\label{fig-volcano-deseq2-hisat2}Volcano plot del análisis de
+expresión diferencial (DESeq2) basado en la matriz HISAT2, mostrando
+genes significativamente regulados(FDR ≤ 0.0001 y \textbar LFC\textbar{}
+≥ 1).}
+
+\end{figure}%
+
+La visualización mediante el volcano plot nos permite profundizar en el
+punto anterior, ya que se observa que los cambios más pronunciados en la
+expresión corresponden principalmente a genes subexpresados en los
+individuos con dependencia al alcohol. Esto es relevante porque sugiere
+que programas biológicos que normalmente se encuentran activos de manera
+basal en los astrocitos podrían verse atenuados como consecuencia del
+consumo prolongado de alcohol, lo que potencialmente contribuiría a la
+disrupción de funciones esenciales de estas células.
+
+Por otro lado, también se identifican genes sobreexpresados en la
+condición \texttt{Dependent}, lo que indica la activación de programas
+transcripcionales específicos en respuesta a la exposición crónica al
+alcohol. En conjunto, estos resultados sugieren que la dependencia al
+alcohol no solo reduce la actividad de procesos celulares basales, sino
+que también induce mecanismos de respuesta adaptativa dentro de los
+astrocitos.
+
+\subparagraph{HeatMap}\label{heatmap-1}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{../results/DEA/Heatmap_DEA_deseq2_hisat2.png}
+
+}
+
+\caption{\label{fig-heatmap-deseq2-hisat2}Heatmap de expresión
+diferencial generado con DESeq2 a partir de la matriz HISAT2, mostrando
+patrones de expresión entre condiciones(FDR ≤ 0.0001 y
+\textbar LFC\textbar{} ≥ 1).}
+
+\end{figure}%
+
+Por último, el heatmap permite visualizar los perfiles de expresión
+característicos de ambas condiciones experimentales. Se puede observar
+cómo los z-scores calculados a partir de las matrices de conteos
+normalizadas presentan cierta heterogeneidad entre las muestras, lo que
+respalda la idea de que las diferencias detectadas corresponden a
+efectos biológicos relativamente discretos más que a cambios drásticos
+en la expresión génica.
+
+Asimismo, esta representación permite apreciar cómo el número de
+réplicas biológicas contribuye a la identificación de genes
+diferencialmente expresados, ya que la consistencia de los patrones de
+expresión entre muestras es uno de los factores clave para alcanzar
+significancia estadística en el análisis.
+
+\begin{quote}
+Los conjuntos de genes identificados mediante \texttt{edgeR}
+\hyperref[DEA_hisat2_edgeR]{edgeR hisat2}, así como aquellos obtenidos a
+partir de la matriz generada por STAR \hyperref[DEA_star]{STAR DEA},
+mostraron un número considerablemente menor de genes diferencialmente
+expresados. Aunque los resultados obtenidos fueron consistentes entre
+las réplicas, la capacidad de detección fue inferior a la observada con
+la combinación \texttt{hisat2} + \texttt{DESeq2}. Por esta razón, se
+seleccionaron los resultados generados con estas dos herramientas para
+los análisis posteriores.
+\end{quote}
+
+\subsection{Enriquecimiento funcional}\label{enriquecimiento-funcional}
+
+Finalmente, se realizó el enriquecimiento funcional de los genes
+diferencialmente expresados identificados a partir de la matriz de
+conteos generada por HISAT2 y analizada mediante \texttt{DESeq2}. El
+objetivo de este análisis fue dotar de contexto biológico a los cambios
+transcripcionales observados entre las condiciones \emph{Dependent} y
+\emph{Naive}, identificando procesos, funciones y posibles interacciones
+moleculares asociados a los genes diferencialmente expresados.
+
+Para ello, el análisis se centró en tres aproximaciones complementarias:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Gene Ontology (GO):} para identificar categorías biológicas,
+  funciones moleculares y compartimientos celulares sobrerrepresentados
+  entre los genes diferencialmente expresados.
+\item
+  \textbf{Gene Set Enrichment Analysis (GSEA):} para evaluar el
+  enriquecimiento de conjuntos de genes considerando la distribución
+  completa de los cambios de expresión, evitando depender exclusivamente
+  de umbrales arbitrarios para definir genes diferencialmente
+  expresados.
+\item
+  \textbf{STRING:} para explorar las posibles interacciones
+  proteína-proteína y determinar si los genes identificados forman
+  módulos funcionales o redes biológicas relacionadas con la respuesta
+  al tratamiento.
+\end{itemize}
+
+\subsubsection{GO analysis}\label{go-analysis}
+
+Se utilizó el análisis de enriquecimiento de términos mediante Ontología
+de Genes (GO) para caracterizar las funciones biológicas asociadas a los
+genes diferencialmente expresados. En particular, se evaluaron las
+categorías de \textbf{proceso biológico} (\texttt{BP}),
+\textbf{compartimiento celular} (\texttt{CC}) y \textbf{función
+molecular} (\texttt{MF}) mediante la función \texttt{enrichGO} de la
+librería \texttt{clusterProfiler}{[}20{]}, utilizando la información de
+anotación contenida en la base de datos \texttt{org.Mm.eg.db} y los
+identificadores \texttt{ENSMBL} presentes en la matriz de genes
+diferencialmente expresados.
+
+Asimismo, para incrementar la cantidad de genes disponibles para el
+análisis de enriquecimiento y mejorar la capacidad de detección de
+categorías funcionales, se empleó un criterio de selección menos
+estricto que el utilizado en el DEA, conservando únicamente aquellos
+genes con un valor absoluto de \textbf{log2 fold change} mayor o igual a
+1 (\texttt{\textbar{}LFC\textbar{}\ ≥\ 1}) y un **FDR ≤ 0.05`.
+Posteriormente, los genes sobreexpresados y subexpresados se analizaron
+por separado con el fin de identificar procesos biológicos asociados
+específicamente a cada dirección del cambio transcripcional.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/functional_enrich/GO_enrich_hisat2_deseq2_BP.png}
+
+}
+
+\caption{Enriquecimiento funcional en procesos biológicos. Solo se
+encontró significancia en los genes sobreexpresados, principalmente
+relacionados con mecanismos de respuesta al daño celular (FDR ≤ 0.05 y
+\textbar LFC\textbar{} ≥ 1).}
+
+\end{figure}%
+
+Se obtuvo una amplia variedad de términos enriquecidos dentro de los
+genes sobreexpresados en los astrocitos de individuos dependientes del
+alcohol. Entre los procesos más relevantes destacan aquellos
+relacionados con vías de señalización celular como \textbf{ERK1/ERK2} y
+\textbf{NF-κB}. Esta última resulta particularmente importante debido a
+su papel central en la regulación de la inflamación y de la respuesta
+inmune.
+
+Asimismo, se observó un enriquecimiento significativo en términos
+asociados con el \textbf{complejo mayor de histocompatibilidad de clase
+II (MHC II)} y la \textbf{presentación de antígenos}, siendo la
+activación de la respuesta celular uno de los procesos más
+representados. Estos resultados sugieren una respuesta asociada al daño
+tisular y a la activación inmunitaria en los astrocitos expuestos
+crónicamente al alcohol.
+
+De manera consistente, también se identificó enriquecimiento en procesos
+relacionados con la proliferación y respuesta de fibroblastos, fenómenos
+frecuentemente asociados con el daño tisular y la remodelación de la
+matriz extracelular.
+
+Por su parte, el análisis de enriquecimiento por compartimiento celular
+(@GO\_CC) mostró resultados concordantes con los observados en los
+procesos biológicos, destacando nuevamente la sobreexpresión de genes
+asociados al \textbf{MHC II}. Además, esta fue la única categoría en la
+que se identificaron términos enriquecidos para los genes subexpresados,
+predominando aquellos relacionados con la \textbf{división celular}.
+
+Finalmente, los términos enriquecidos en la categoría de función
+molecular (@GO\_MF) también estuvieron estrechamente relacionados con
+componentes y funciones asociadas al \textbf{MHC II}, reforzando la
+evidencia de una activación de mecanismos inmunitarios e inflamatorios
+en los astrocitos de los individuos con dependencia al alcohol.
+
+Code \hyperref[Func_en_GO]{GO}
+
+\subsubsection{GSEA}\label{gsea}
+
+Por su parte, para realizar un análisis de enriquecimiento funcional más
+sensible y capaz de aprovechar toda la información disponible en los
+datos, se utilizó el método \textbf{Gene Set Enrichment Analysis (GSEA)}
+mediante la función \texttt{gseGO} y la base de datos
+\texttt{org.Mm.eg.db}. El análisis se enfocó exclusivamente en los
+términos de \textbf{proceso biológico} (\texttt{BP}), ya que esta
+categoría fue la que presentó el mayor enriquecimiento durante el
+análisis de sobre representación realizado previamente con
+\texttt{enrichGO}.
+
+A diferencia del análisis tradicional de enriquecimiento de términos,
+GSEA no requiere definir de manera arbitraria una lista de genes
+diferencialmente expresados. En su lugar, utiliza una lista ordenada de
+todos los genes evaluados durante el DEA, permitiendo detectar cambios
+coordinados en conjuntos de genes aun cuando muchos de ellos no superen
+individualmente los umbrales de significancia.
+
+Debido a ello, para este análisis no se aplicó un filtrado basado en
+\textbf{log fold change} o \textbf{FDR}. En cambio, los genes fueron
+ordenados utilizando el estadístico \texttt{stat} reportado por
+\texttt{DESeq2}. Este estadístico resulta especialmente útil porque
+integra tanto la magnitud del cambio de expresión como la incertidumbre
+asociada a dicha estimación. De esta manera, genes con cambios elevados
+pero con una gran variabilidad entre muestras reciben una menor
+ponderación, mientras que aquellos con cambios consistentes obtienen una
+mayor relevancia dentro del ranking.
+
+El uso del estadístico \texttt{stat} permite conservar una mayor
+cantidad de genes para el análisis, aumentando la cobertura de los
+conjuntos funcionales evaluados y proporcionando una mayor potencia
+estadística para detectar procesos biológicos enriquecidos sin depender
+de umbrales de corte estrictos.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{../results/functional_enrich/GSEA_enrich_hisat2_deseq2_BP.png}
+
+}
+
+\caption{Análisis GSEA realizado a partir del estadístico \texttt{stat}
+obtenido con \texttt{DESeq2}. En el panel superior se muestra el
+conjunto de genes con mayor enriquecimiento positivo, mientras que en el
+panel inferior se representan los conjuntos enriquecidos en el extremo
+opuesto del ranking. La posición de las líneas verticales indica la
+distribución de los genes pertenecientes a cada conjunto a lo largo de
+la lista ordenada de genes utilizada para el análisis.}
+
+\end{figure}%
+
+El análisis GSEA mostró resultados consistentes con los obtenidos
+previamente mediante el análisis de enriquecimiento de términos. El
+conjunto de genes más enriquecido correspondió al procesamiento y
+presentación de antígenos, encontrándose sobre regulado en los
+astrocitos de los individuos con dependencia al etanol. Esta tendencia
+se mantiene en los otros siete conjuntos de genes enriquecidos (parte
+inferior de la figura @GSEA\_BP), donde predominan procesos relacionados
+con la respuesta inflamatoria mediada por interferón, el procesamiento y
+presentación de antígenos asociados a la respuesta inmune, así como
+mecanismos de detoxificación celular.
+
+En conjunto, estos resultados refuerzan la evidencia de una activación
+de programas transcripcionales relacionados con la respuesta inmunitaria
+y el estrés celular en los astrocitos de los individuos dependientes de
+etanol. Además, la concordancia entre los resultados obtenidos mediante
+\texttt{enrichGO} y GSEA aporta una mayor confianza biológica a las vías
+identificadas, sugiriendo que la exposición crónica al alcohol induce
+una respuesta neuroinflamatoria caracterizada por la activación de
+mecanismos de procesamiento antigénico, señalización por interferón y
+respuesta a daño celular.
+
+\subsubsection{String}\label{string}
+
+A diferencia de los análisis de enriquecimiento de términos, el
+enriquecimiento funcional que realiza \texttt{STRING} {[}21{]} se basa
+en las interacciones proteína-proteína que pueden presentar nuestros
+genes diferencialmente expresados. Se aplicó este análisis para evaluar
+la conexión entre los genes identificados utilizando las mismas cotas
+asignadas para el DEA (FDR ≤ 0.0001 y \textbar LFC\textbar{} ≥ 1).
+Debido a que los efectos observados son discretos, se seleccionó un
+score mínimo de interacción bajo de 150.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/functional_enrich/String_analyisis_DEA_genes.png}
+
+}
+
+\caption{Red de interacción generada mediante string con una confianza
+de interacción de 150.}
+
+\end{figure}%
+
+Se puede observar que, de acuerdo con el score bajo de interacción
+utilizado, la mayoría de las interacciones externas se basan en
+coexpresión génica (líneas negras) y minería de literatura (líneas
+amarillas), seguidas por las interacciones predichas por \texttt{STRING}
+(líneas verdes, rojas y azules) presentes en nodos más internos. Las
+únicas interacciones respaldadas por evidencia experimental o
+previamente reportadas (líneas azules y magenta) corresponden
+principalmente a las conexiones centrales de la red. Sin embargo, la
+elevada conectividad general de la red, sustentada principalmente por
+patrones de coexpresión, sugiere la existencia de un programa
+transcripcional coordinado asociado con los términos enriquecidos
+identificados mediante GSEA y GO.
+
+Un aspecto relevante de este análisis es la conexión entre procesos
+biológicos que no resulta tan evidente en los dos análisis anteriores.
+En particular, los términos enriquecidos relacionados con la respuesta
+inmune y la proliferación de fibroblastos se encuentran conectados
+mediante las interacciones identificadas por \texttt{STRING}. Esto se
+observa especialmente alrededor del nodo central \textbf{Cd74}, el cual
+participa en el procesamiento y estabilización de antígenos asociados al
+complejo MHC II. Como era de esperarse, este gen interactúa con otras
+proteínas relacionadas con la respuesta inmune, como \textbf{Ifitm3} e
+\textbf{Ifit3}, asociadas a la señalización por interferón, así como con
+genes vinculados a la proliferación fibroblástica, entre ellos
+\textbf{S100a11}, \textbf{Itga4} y \textbf{Krt15}. En conjunto, estos
+resultados sugieren que la exposición al etanol induce cambios
+transcripcionales no solo relacionados con la respuesta inflamatoria,
+sino también con mecanismos asociados al daño celular y la toxicidad
+tisular.
+
+\section{Discusión y conclusiones}\label{discusiuxf3n-y-conclusiones}
+
+El análisis de expresión diferencial es un procedimiento compuesto por
+múltiples pasos antes de llegar a lo que aparenta ser la etapa más
+directa: las pruebas de hipótesis. En este proyecto se comprobó que este
+proceso no es del todo \emph{straight-forward}, ya que existe una alta
+dependencia tanto de los datos como de las herramientas utilizadas,
+pudiendo diferir de lo reportado en la literatura {[}18{]}.
+Particularmente, para los datos analizados en este estudio, el alineador
+\texttt{hisat2} mostró un mejor desempeño, aunque con un claro
+\emph{trade-off} en el tiempo consumido, en contraste con lo reportado
+previamente {[}19{]}. Por su parte, la elección de la herramienta para
+realizar el DEA también resultó relevante, ya que \texttt{DESeq2} mostró
+una mayor capacidad de detección frente a \texttt{edgeR}, a pesar de que
+ambas herramientas modelan las diferencias entre condiciones utilizando
+la distribución binomial negativa.
+
+Por otro lado, la etapa de previsualización resultó crítica, pues desde
+este punto las diferencias biológicas entre nuestras dos condiciones de
+estudio (astrocitos obtenidos de ratones dependientes de etanol frente a
+ratones no consumidores) parecían ser discretas, aunque con una clara
+separación entre condiciones. Esto se relaciona con la varianza moderada
+observada mediante el análisis de partición de varianza, el cual ayudó a
+definir un modelo lineal aditivo considerando la contribución de ambas
+variables presentes en los datos. Gracias a ello fue posible identificar
+un mayor número de diferencias biológicas bajo criterios estadísticos
+estrictos.
+
+Este proyecto demostró la existencia de cambios en el panorama
+transcripcional de los astrocitos del núcleo accumbens tras la
+exposición crónica al etanol. La variación observada entre las
+condiciones experimentales parece estar impulsada principalmente por
+efectos discretos en la expresión génica. Resulta particularmente
+relevante que un número relativamente pequeño de genes diferencialmente
+expresados permitiera identificar posibles programas fisiológicos
+asociados a la respuesta crónica al etanol mediante análisis de
+enriquecimiento de términos (GO) y enriquecimiento de conjuntos génicos
+(GSEA). Estos análisis permitieron identificar una clara respuesta
+inflamatoria en los astrocitos @GO\_BP, un hallazgo relevante debido a
+que numerosos procesos neurodegenerativos se encuentran asociados con
+estados de neuroinflamación, los cuales han sido propuestos como
+posibles impulsores de la neurotoxicidad mediada por astrocitos
+{[}1,3{]}. Asimismo, estos resultados permiten plantear la hipótesis de
+una posible disminución de la plasticidad cerebral asociada al consumo
+de alcohol, reflejada por la subregulación de genes relacionados con la
+división celular en células astrogliales.
+
+Finalmente, el análisis realizado mediante \texttt{STRING} permitió
+integrar los resultados obtenidos por GO y GSEA dentro de una red de
+interacciones proteína-proteína sustentadas tanto por evidencia
+experimental como por asociaciones inferidas. Estas interacciones
+sugieren la existencia de un programa transcripcional coordinado
+relacionado con procesos inflamatorios y su influencia sobre distintos
+componentes celulares, como la matriz extracelular y el citoesqueleto.
+En conjunto, estos resultados apuntan hacia mecanismos asociados con la
+respuesta al daño celular y la toxicidad inducida por la exposición
+crónica al etanol.
+
+\newpage
+
+\section{Referencias}\label{referencias}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Liddelow, S., Guttenplan, K., Clarke, L. et al.~Neurotoxic reactive
+  astrocytes are induced by activated microglia. Nature 541, 481--487
+  (2017). https://doi.org/10.1038/nature21029
+\item
+  Garland, E. F., Hartnell, I. J., \& Boche, D. (2022). Microglia and
+  Astrocyte Function and Communication: What Do We Know in Humans?
+  Frontiers In Neuroscience, 16, 824888.
+  https://doi.org/10.3389/fnins.2022.824888
+\item
+  .Liddelow SA, Guttenplan KA, Clarke LE, Bennett FC, Bohlen CJ,
+  Schirmer L, Bennett ML, Münch AE, Chung WS, Peterson TC, Wilton DK,
+  Frouin A, Napier BA, Panicker N, Kumar M, Buckwalter MS, Rowitch DH,
+  Dawson VL, Dawson TM, Stevens B, Barres BA. Neurotoxic reactive
+  astrocytes are induced by activated microglia. Nature. 2017 Jan
+  26;541(7638):481-487. doi: 10.1038/nature21029. Epub 2017 Jan 18.
+  PMID:28099414; PMCID: PMC5404890.
+\item
+  Romanov, R. A., Zeisel, A., Bakker, J., Girach, F., Hellysaz, A.,
+  Tomer, R., Alpár, A., Mulder, J., Clotman, F., Keimpema, E., Hsueh,
+  B., Crow, A. K., Martens, H., Schwindling, C., Calvigioni, D., Bains,
+  J. S., Máté, Z., Szabó, G., Yanagawa, Y., . . . Harkany, T. (2016).
+  Molecular interrogation of hypothalamic organization reveals distinct
+  dopamine neuronal subtypes. Nature Neuroscience, 20(2), 176-188.
+  https://doi.org/10.1038/nn.4462
+\item
+  Hashimoto, J. G., Mangieri, R. A., Roberts, A. J., Lime, T., Davis, B.
+  A., Carbone, L., Roberto, M., \& Guizzetti, M. (2025). Alcohol
+  dependence-induced astrocyte immune activation in the nucleus
+  accumbens. Neurobiology Of Disease, 217, 107171.
+  https://doi.org/10.1016/j.nbd.2025.107171
+\item
+  Leinonen, R., Sugawara, H., Shumway, M., \& International Nucleotide
+  Sequence Database Collaboration. (2011). The sequence read archive.
+  Nucleic Acids Research, 39(suppl\_1), D19--D21.
+  https://doi.org/10.1093/nar/gkq1019
+\item
+  Chen, S., Zhou, Y., Chen, Y., \& Gu, J. (2018). fastp: An ultra-fast
+  all-in-one FASTQ preprocessor. Bioinformatics, 34(17), i884--i890.
+  https://doi.org/10.1093/bioinformatics/bty560
+\item
+  Andrews, S. (2010). FastQC: A quality control tool for high throughput
+  sequence data {[}Software{]}. Babraham Bioinformatics.
+  https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+\item
+  Ewels, P., Magnusson, M., Lundin, S., \& Käller, M. (2016). MultiQC:
+  Summarize analysis results for multiple tools and samples in a single
+  report. Bioinformatics, 32(19), 3047--3048.
+  https://doi.org/10.1093/bioinformatics/btw354
+\item
+  Dobin, A., Davis, C. A., Schlesinger, F., Drenkow, J., Zaleski, C.,
+  Jha, S., Batut, P., Chaisson, M., \& Gingeras, T. R. (2013). STAR:
+  Ultrafast universal RNA-seq aligner. Bioinformatics, 29(1), 15--21.
+  https://doi.org/10.1093/bioinformatics/bts635
+\item
+  Kim, D., Langmead, B., \& Salzberg, S. L. (2015). HISAT: A fast
+  spliced aligner with low memory requirements. Nature Methods, 12(4),
+  357--360. https://doi.org/10.1038/nmeth.3317
+\item
+  Liao, Y., Smyth, G. K., \& Shi, W. (2014). featureCounts: An efficient
+  general purpose program for assigning sequence reads to genomic
+  features. Bioinformatics, 30(7), 923--930.
+  https://doi.org/10.1093/bioinformatics/btt656
+\item
+  Love, M. I., Huber, W., \& Anders, S. (2014). Moderated estimation of
+  fold change and dispersion for RNA-seq data with DESeq2. Genome
+  Biology, 15(12), 550. https://doi.org/10.1186/s13059-014-0550-8
+\item
+  Hoffman, G. E., \& Schadt, E. E. (2016). variancePartition:
+  Interpreting drivers of variation in complex gene expression studies.
+  BMC Bioinformatics, 17, 483. https://doi.org/10.1186/s12859-016-1323-z
+\item
+  Robinson, M. D., McCarthy, D. J., \& Smyth, G. K. (2010). edgeR: A
+  Bioconductor package for differential expression analysis of digital
+  gene expression data. Bioinformatics, 26(1), 139--140.
+  https://doi.org/10.1093/bioinformatics/btp616
+\item
+  Ritchie, M. E., Phipson, B., Wu, D., Hu, Y., Law, C. W., Shi, W., \&
+  Smyth, G. K. (2015). limma powers differential expression analyses for
+  RNA-sequencing and microarray studies. Nucleic Acids Research, 43(7),
+  e47. https://doi.org/10.1093/nar/gkv007
+\item
+  Genome Reference Consortium. (2020). Mouse genome assembly GRCm39.
+  National Center for Biotechnology Information.
+  https://www.ncbi.nlm.nih.gov/grc/mouse/data?asm=GRCm39
+\item
+  Coxe, T., Burks, D. J., Singh, U., Mittler, R., \& Azad, R. K. (2024).
+  Benchmarking RNA-Seq Aligners at Base-Level and Junction Base-Level
+  Resolution Using the Arabidopsis~thaliana Genome. Plants, 13(5), 582.
+  https://doi.org/10.3390/plants13050582
+\item
+  Baruzzo, G., Hayer, K. E., Kim, E. J., Di Camillo, B., FitzGerald, G.
+  A., \& Grant, G. R. (2016). Simulation-based comprehensive
+  benchmarking of RNA-seq aligners. Nature Methods, 14(2), 135-139.
+  https://doi.org/10.1038/nmeth.4106
+\item
+  Yu, G., Wang, L., Han, Y., \& He, Q. (2012). clusterProfiler: an R
+  Package for Comparing Biological Themes Among Gene Clusters. OMICS A
+  Journal Of Integrative Biology, 16(5), 284-287.
+  https://doi.org/10.1089/omi.2011.0118
+\item
+  STRING. (2023, 26 julio). \emph{STRING: functional protein association
+  networks}.
+  https://string-db.org/cgi/input?sessionId=bEVlDPhubey6\&input\_page\_show\_search=off
+\end{enumerate}
+
+\subsection{Reproducibilidad}\label{reproducibilidad}
+
+Entorno: R 4.4.3 · Bioconductor 3.20 · x86\_64 CentOS Stream 9
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Package & Version & Source \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+DESeq2 & 1.46.0 & Bioconductor \\
+edgeR & 4.4.2 & Bioconductor \\
+ComplexHeatmap & 2.22.0 & Bioconductor \\
+variancePartition & 1.36.3 & Bioconductor \\
+clusterProfiler & 4.14.6 & Bioconductor \\
+enrichplot & 1.26.6 & Bioconductor \\
+org.Mm.eg.db & 3.20.0 & Bioconductor \\
+AnnotationDbi & 1.68.0 & Bioconductor \\
+ggplot2 & 4.0.3 & CRAN \\
+dplyr & 1.2.1 & CRAN \\
+tidyr & 1.3.2 & CRAN \\
+tibble & 3.3.1 & CRAN \\
+knitr & 1.51 & CRAN \\
+kableExtra & 1.4.0 & CRAN \\
+gridExtra & 2.3 & CRAN \\
+R6 & 2.6.1 & CRAN \\
+\end{longtable}
+}
+
+Entorno: Python 3.13.13 · conda-forge · GCC 14.3.0 · Linux x86\_64 ·
+CentOS Stream 9 · 2026-05-31
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Package & Version \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+pandas & 2.3.3 \\
+numpy & 2.4.3 \\
+session\_info & 1.0.0 \\
+tabulate & 0.10.0 \\
+IPython & 9.13.0 \\
+jupyter\_client & 8.8.0 \\
+jupyter\_core & 5.9.1 \\
+jupyterlab & 4.5.7 \\
+\end{longtable}
+}
+
+\newpage
+
+\section{Anexo}\label{anexo}
+
+\subsection{Command runs}\label{command-runs}
+
+\subsubsection{1}\label{section}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mkdir {-}p data/reference/}
+
+\NormalTok{\#reference fasta}
+\NormalTok{wget {-}O data/reference/GRCm39.genome.fa.gz \textbackslash{}}
+\NormalTok{ https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode\_mouse/release\_M38/GRCm39.genome.fa.gz }
+
+\NormalTok{\#reference annotation}
+\NormalTok{wget {-}O data/reference/gencode.vM38.chr\_patch\_hapl\_scaff.annotation.gtf.gz \textbackslash{}}
+\NormalTok{ https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode\_mouse/release\_M38/gencode.vM38.chr\_patch\_hapl\_scaff.annotation.gtf.gz }
+
+\NormalTok{wget {-}O data/reference/gencode.vM38.transcripts.fa.gz \textbackslash{}}
+\NormalTok{https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode\_mouse/release\_M38/gencode.vM38.transcripts.fa.gz}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Comandos para la descarga de los datos mediante wget y sftp
+\end{quote}
+
+\subsubsection{2}\label{section-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{raw\_metadata = pd.read\_csv("data/GSE308880\_eOH\_dependence\_metadata.csv")}
+
+\NormalTok{\# celan only keeping the relevant information}
+\NormalTok{clean\_metadata = raw\_metadata[["Run", "Bases", "Experiment", "genotype", "Organism"]]}
+
+\NormalTok{\# input download}
+\NormalTok{clean\_metadata.iloc[:, 0].to\_csv("data/in\_dw\_srr.csv", index=False, header=False)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Construcción de la tabla de metadatos para la descraga, solo se solcitan
+los SRR ids unicos
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{nextflow run \textbackslash{}}
+\NormalTok{    {-}resume \textbackslash{}}
+\NormalTok{    src/preprocces\_data.nf \textbackslash{}}
+\NormalTok{    {-}c src/preprocces.config \textbackslash{}}
+\NormalTok{    {-}{-}outdir data/SRR \textbackslash{}}
+\NormalTok{    {-}{-}outdir\_QC results QC \textbackslash{}}
+\NormalTok{    {-}{-}onlydownload true \textbackslash{}}
+\NormalTok{    {-}{-}metadata data/in\_dw\_srr.csv \textbackslash{}}
+\NormalTok{    {-}profile sge}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Run de pipeline en la modalidad solo descarga para relizar la misma y el
+reporte QC
+\end{quote}
+
+\subsubsection{3}\label{section-2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{\#path con los datos limpios mediante fastp}
+\NormalTok{data\_pth="/export/space3/users/ismadlsh/LCG/\textbackslash{}}
+\NormalTok{S4/transcriptomica/Astrocite\_eOH\_transcriptomic\_analysis/data/SRR/"}
+\NormalTok{\#conservamos solo los ids}
+\NormalTok{input\_clean=clean\_metadata[["Run"]]}
+\NormalTok{\#cosntruimos las paths para ambos archivos paired y unpaired reads}
+\NormalTok{input\_clean["fatq\_1"]= data\_pth + input\_clean["Run"] + "/" + input\_clean["Run"] + "\_1.fastq.gz" }
+\NormalTok{input\_clean["fatq\_2"]= data\_pth + input\_clean["Run"] + "/" + input\_clean["Run"] + "\_2.fastq.gz" }
+
+\NormalTok{\#guardamos la tabla }
+\NormalTok{input\_clean.to\_csv("data/in\_clean\_srr.csv", header=False , index=False)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Construcción de la tabla de metadatos para la limpieza de los datos
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nextflow run src/preprocces\_data.nf \textbackslash{}}
+\NormalTok{{-}c src/preprocces.config \textbackslash{}}
+\NormalTok{{-}{-}outdir \textbackslash{}}
+\NormalTok{/export/space3/users/ismadlsh/LCG/S4/transcriptomica/Astrocite\_eOH\_transcriptomic\_analysis/results \textbackslash{}}
+\NormalTok{{-}{-}onlyclean true \textbackslash{}}
+\NormalTok{{-}{-}metadata \textbackslash{}}
+\NormalTok{/export/space3/users/ismadlsh/LCG/S4/transcriptomica/Astrocite\_eOH\_transcriptomic\_analysis/data/in\_clean\_srr.csv \textbackslash{}}
+\NormalTok{{-}{-}trimF 1 \textbackslash{}}
+\NormalTok{{-}{-}fastp\_env "fastp" {-}{-}fastp\_args="{-}{-}trim\_poly\_x" {-}profile sge}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Run del pipeline para la limpieza usando fatp y un número de bases a
+trimear de 10 ademas de eliminar los adaptadores de cualquier repetición
+de bases
+\end{quote}
+
+\subsubsection{4}\label{section-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{STAR {-}{-}runMode genomeGenerate {-}{-}runThreadN 8 \textbackslash{}}
+\NormalTok{{-}{-}genomeDir indexes/star {-}{-}genomeFastaFiles GRCm39.genome.fa \textbackslash{}}
+\NormalTok{{-}{-}sjdbGTFfile gencode.vM38.chr\_patch\_hapl\_scaff.annotation.gtf {-}{-}sjdbOverhang 149}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hisat2\_extract\_splice\_sites.py gencode.vM38.chr\_patch\_hapl\_scaff.annotation.gtf \textgreater{} splicesites.txt}
+
+\NormalTok{hisat2\_extract\_exons.py gencode.vM38.chr\_patch\_hapl\_scaff.annotation.gtf \textgreater{} exons.txt}
+
+\NormalTok{hisat2{-}build {-}p 8 {-}{-}ss splicesites.txt {-}{-}exon exons.txt GRCm39.genome.fa indexes/hisat}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{5}\label{section-4}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{\#path con los datos limpios mediante fastp}
+\NormalTok{data\_pth=\textbackslash{}}
+\NormalTok{"/export/space3/users/ismadlsh/LCG/S4/transcriptomica/\textbackslash{}}
+\NormalTok{Astrocite\_eOH\_transcriptomic\_analysis/results/clean\_data/"}
+
+\NormalTok{\#conservamos solo los ids}
+\NormalTok{input\_align=clean\_metadata[["Run"]]}
+\NormalTok{\#cosntruimos las paths para ambos archivos paired y unpaired reads}
+\NormalTok{input\_align["fatq\_1"]= data\_pth + input\_clean["Run"] + "/" + input\_clean["Run"] + "\_1\_clean.fastq.gz" }
+\NormalTok{input\_align["fatq\_2"]= data\_pth + input\_clean["Run"] + "/" + input\_clean["Run"] + "\_2\_clean.fastq.gz" }
+
+\NormalTok{\#guardamos la tabla }
+\NormalTok{input\_align.to\_csv("data/in\_align\_srr.csv", header=False , index=False)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Construcción de la tabla de metadatos para el alineamiento y
+cuantificación de los datos
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{nextflow run src/preprocces\_data.nf \textbackslash{}}
+\NormalTok{{-}c src/preprocces.config \textbackslash{}}
+\NormalTok{{-}{-}outdir \textbackslash{}}
+\NormalTok{/export/space3/users/ismadlsh/LCG/S4/transcriptomica/Astrocite\_eOH\_transcriptomic\_analysis/results \textbackslash{}}
+\NormalTok{{-}{-}onlyalign true \textbackslash{}}
+\NormalTok{{-}{-}metadata \textbackslash{}}
+\NormalTok{/export/space3/users/ismadlsh/LCG/S4/transcriptomica/Astrocite\_eOH\_transcriptomic\_analysis/data/in\_align\_srr.csv \textbackslash{}}
+\NormalTok{{-}{-}aligner both \textbackslash{}}
+\NormalTok{{-}{-}star\_index \textbackslash{}}
+\NormalTok{/export/space3/users/ismadlsh/LCG/S4/transcriptomica/Astrocite\_eOH\_transcriptomic\_analysis/data/reference/indexes/star \textbackslash{}}
+\NormalTok{{-}{-}hisat\_index \textbackslash{}}
+\NormalTok{/export/space3/users/ismadlsh/LCG/S4/transcriptomica/Astrocite\_eOH\_transcriptomic\_analysis/data/reference/indexes/hisat/hisat \textbackslash{}}
+\NormalTok{{-}{-}threads 8 \textbackslash{}}
+\NormalTok{{-}{-}annotation\_file \textbackslash{}}
+\NormalTok{/export/space3/users/ismadlsh/LCG/S4/transcriptomica/Astrocite\_eOH\_transcriptomic\_analysis/\textbackslash{}}
+\NormalTok{data/reference/gencode.vM38.chr\_patch\_hapl\_scaff.annotation.gtf \textbackslash{}}
+\NormalTok{{-}resume \textbackslash{}}
+\NormalTok{{-}profile sge}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Run del pipeline para el alineamiento usando ambos alineadores (hisat2 y
+star) con los indexes generados con el genoma de referencia (command run
+4)
+\end{quote}
+
+\subsubsection{6}\label{section-5}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{awk \textquotesingle{}}
+\NormalTok{BEGIN\{}
+\NormalTok{    FS=OFS="\textbackslash{}t"}
+\NormalTok{    print "gene\_id","gene\_name","length"}
+\NormalTok{\}}
+
+\NormalTok{$3=="gene" \{}
+
+\NormalTok{    match($9,/gene\_id "[\^{}"]+"/)}
+\NormalTok{    gene\_id=substr($9,RSTART+9,RLENGTH{-}10)}
+\NormalTok{    sub(/\textbackslash{}.[0{-}9]+$/,"",gene\_id)}
+
+\NormalTok{    match($9,/gene\_name "[\^{}"]+"/)}
+\NormalTok{    gene\_name=substr($9,RSTART+11,RLENGTH{-}12)}
+
+\NormalTok{    print gene\_id,gene\_name,$5{-}$4+1}
+\NormalTok{\}}
+\NormalTok{\textquotesingle{} data/reference/gencode.vM38.chr\_patch\_hapl\_scaff.annotation.gtf \textbackslash{}}
+\NormalTok{\textgreater{} data/reference/GRCm39\_vM38\_mouse\_t2g.tsv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Generación del archivo de antoación transcript to gene a traves de las
+columnas del gtf en \texttt{data/reference/GRCm39\_vM38\_mouse\_t2g.tsv}
+\end{quote}
+
+\subsection{QC results}\label{QC_res}
+
+\subsubsection{Raw data}\label{QC_raw}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/QC/fastqc_adapter_content_plot_raw_data.png}
+
+}
+
+\caption{\label{fig-raw-adapter-content}Distribución del contenido de
+adaptadores detectado en las lecturas crudas mediante FastQC y resumido
+con MultiQC. La presencia de secuencias adaptadoras residuales puede
+afectar la calidad del alineamiento y sesgar las estimaciones de
+expresión.}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/QC/fastqc_per_base_sequence_content_plot_raw_data.png}
+
+}
+
+\caption{\label{fig-raw-base-content}Distribución del contenido por base
+en lecturas crudas evaluado mediante FastQC y MultiQC, útil para
+identificar sesgos en la composición de nucleótidos a lo largo de las
+posiciones de lectura.}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/QC/fastqc_per_sequence_gc_content_plot_raw_data.png}
+
+}
+
+\caption{\label{fig-raw-gc-content}Distribución del contenido GC en
+lecturas crudas, utilizada para evaluar sesgos en la composición global
+de nucleótidos respecto al genoma de referencia.}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/QC/fastqc-status-check-heatmap_raw_data.png}
+
+}
+
+\caption{\label{fig-raw-qc-heatmap}Resumen de métricas de control de
+calidad en lecturas crudas mediante heatmap de MultiQC, integrando
+múltiples indicadores de calidad por muestra.}
+
+\end{figure}%
+
+\subsubsection{Clean data}\label{QC_clean}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/QC/fastqc-status-check-heatmap_clean_data.png}
+
+}
+
+\caption{\label{fig-clean-qc-heatmap}Resumen de métricas de control de
+calidad posterior al filtrado y limpieza de lecturas, mostrando la
+mejora en indicadores globales de calidad tras el preprocesamiento.}
+
+\end{figure}%
+
+\subsection{DEA}\label{dea-1}
+
+\subsubsection{Filtrado de los conteos}\label{filt_func}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{filter\_by\_expression \textless{}{-} function(counts\_obj, group, DEA\_package = "DESeq2") \{}
+\NormalTok{  \#revisar de que paquete proviene el objeto}
+\NormalTok{  if (DEA\_package == "DESeq2") \{}
+\NormalTok{    \#Si es un objeto DESeqDataSet obtenemos solo la matriz de conteos}
+\NormalTok{    counts = counts(counts\_obj)}
+\NormalTok{  \} else \{}
+\NormalTok{    counts = counts\_obj}
+\NormalTok{  \}}
+\NormalTok{  \#Hacemos el filtrado en función si se pasó un factor o una matriz de diseño}
+\NormalTok{  if (is.matrix(group)) \{}
+\NormalTok{    keep = filterByExpr(counts, design = group)}
+\NormalTok{  \} else \{}
+\NormalTok{    keep = filterByExpr(counts, group = group)}
+\NormalTok{  \}}
+\NormalTok{  \#se hace el filtro en el objeto original}
+\NormalTok{  counts\_obj = counts\_obj[keep, ]}
+\NormalTok{  \#se regresa el objeto}
+\NormalTok{  return(counts\_obj)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Parseo de genes diferencialmente
+expresados}\label{parse_DE}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{get\_DE\_genes \textless{}{-} function(res, LFC = 2, FDR = 1e{-}10, name = "Numbern DE genes") \{}
+\NormalTok{  \# Se obtiene el numero de genes sobre regulados de acuerdo a las cotas}
+\NormalTok{  up = (res$log2FoldChange \textgreater{} LFC) \& (res$padj \textless{} FDR)}
+\NormalTok{  \#filtrar los genes sobre regulados}
+\NormalTok{  up[which(is.na(up))] = FALSE \# eliminar NAs}
+\NormalTok{  \#Imprimir el nombre de genes sobre regulados}
+\NormalTok{  cat("Upregulated: ", sum(up), "\textbackslash{}n")}
+\NormalTok{  \# Se obtiene el numero de genes sub regulados de acuerdo a las cotas}
+\NormalTok{  down = (res$log2FoldChange \textless{} {-}LFC) \& (res$padj \textless{} FDR)}
+\NormalTok{  down[which(is.na(down))] = FALSE \# eliminar NAs}
+\NormalTok{  \#Imprimir el numero de genes sub regulados}
+\NormalTok{  cat("Downregulated: ", sum(down), "\textbackslash{}n")}
+
+\NormalTok{  \#Copiar la matriz de resultados}
+\NormalTok{  DE\_genes = res}
+\NormalTok{  \#Añadir los labels}
+\NormalTok{  DE\_genes$DE = "NO"}
+\NormalTok{  DE\_genes[up, "DE"] = "UP"}
+\NormalTok{  DE\_genes[down, "DE"] = "DOWN"}
+
+\NormalTok{  \#estadisticas generales}
+\NormalTok{  gen\_res = as.factor(DE\_genes$DE)}
+\NormalTok{  counts \textless{}{-} table(gen\_res)}
+\NormalTok{  gen\_res\_df \textless{}{-} data.frame(}
+\NormalTok{    ALL = counts["DOWN"] + counts["UP"],}
+\NormalTok{    DOWN = counts["DOWN"],}
+\NormalTok{    UP = counts["UP"],}
+\NormalTok{    row.names = name}
+\NormalTok{  )}
+\NormalTok{  return(list(DE\_genes, gen\_res\_df))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Volcano}\label{plot_volcano}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{plot\_volcano \textless{}{-} function(res\_labes,LFC = 2,FDR = 1e{-}10,plot\_name = "Volcano plot") \{}
+\NormalTok{  \#Asegurar que es un data frame el input}
+\NormalTok{  res\_df \textless{}{-} as.data.frame(res\_labes)}
+
+\NormalTok{  \# Asignar los limites para el ploteo}
+\NormalTok{  volcano\_LFC\_limit = 12}
+\NormalTok{  volcano\_FDR\_limit = 70}
+
+\NormalTok{  \# Colores de las condiciones}
+\NormalTok{  vpcolors = c("gray", "blue", "red")}
+\NormalTok{  names(vpcolors) = c("NO", "DOWN", "UP")}
+
+\NormalTok{  \# Hacer el volcano plot}
+\NormalTok{  volcano\_p \textless{}{-} ggplot(data = res\_df,aes(x = log2FoldChange,y = {-}log10(padj),col = DE)}
+\NormalTok{  ) +}
+\NormalTok{    geom\_point() +labs(title = plot\_name,x = "log2 Expression fold change",y = "{-}log10 FDR"}
+\NormalTok{    ) +coord\_cartesian(xlim = c({-}volcano\_LFC\_limit, volcano\_LFC\_limit),ylim = c(0, volcano\_FDR\_limit)}
+\NormalTok{    ) +}
+\NormalTok{    scale\_color\_manual(values = vpcolors) +}
+\NormalTok{    geom\_vline(xintercept = c({-}LFC, LFC),col = "black",linetype = "longdash"}
+\NormalTok{    ) +}
+\NormalTok{    geom\_hline(yintercept = {-}log10(FDR),col = "black",linetype = "longdash"}
+\NormalTok{    ) +}
+\NormalTok{    theme\_classic(base\_size = 15, base\_line\_size = 1)}
+
+\NormalTok{  return(volcano\_p)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Heatmap}\label{plot_Heatmap}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{plot\_heatmap \textless{}{-} function(significant,norm\_mat,num\_genes = 20,plot\_name = "Heatmap") \{}
+\NormalTok{  \#mantener solo los genes diferencialmente expresados}
+\NormalTok{  significant = significant[significant$DE != "NO", ]}
+\NormalTok{  if (nrow(significant) == 0) \{return(NULL)\}}
+\NormalTok{  \#Ordenarlor por su p valor ajustado}
+\NormalTok{  significant\_order = significant[order(significant$padj),drop = FALSE]}
+\NormalTok{  \#solo nos quedamos con los genes especificdos}
+\NormalTok{  top\_genes = head(rownames(significant\_order), ,n = num\_genes)}
+
+\NormalTok{  \#filtramos los genes mas signficativos}
+\NormalTok{  mat \textless{}{-} norm\_mat[top\_genes, ,drop = FALSE]}
+\NormalTok{  \#remover NAs}
+\NormalTok{  mat \textless{}{-} mat[apply(mat, 1, sd) \textgreater{} 0,,drop = FALSE]}
+
+\NormalTok{  \#obtener los z{-}score para la matriz normalizada}
+\NormalTok{  zscore\_top \textless{}{-} as.matrix(t(scale(t(mat))))}
+\NormalTok{  \#quitar los NAs}
+\NormalTok{  zscore\_top \textless{}{-} zscore\_top[complete.cases(zscore\_top), ,drop = FALSE]}
+
+\NormalTok{  \# verificar que el numero de filas sea menor que 2}
+\NormalTok{  n\_unique \textless{}{-} nrow(unique(as.data.frame(zscore\_top)))}
+\NormalTok{  \#no plotear heatmaps pobres}
+\NormalTok{  if (n\_unique \textless{} 2) \{}
+\NormalTok{    return(NULL)}
+\NormalTok{  \}}
+\NormalTok{  \#plotear el heatmap (objeto de complex heatmap)}
+\NormalTok{  heat\_p = Heatmap(}
+\NormalTok{    zscore\_top,}
+\NormalTok{    cluster\_rows = TRUE,}
+\NormalTok{    cluster\_columns = FALSE,}
+\NormalTok{    row\_labels = rownames(zscore\_top),}
+\NormalTok{    name = "Z score",}
+\NormalTok{    column\_title = plot\_name,}
+\NormalTok{    row\_names\_gp = gpar(fontsize = 12),}
+\NormalTok{    column\_names\_gp = gpar(fontsize = 16),}
+\NormalTok{    column\_title\_gp = gpar(fontsize = 20),}
+\NormalTok{    heatmap\_legend\_param = list(}
+\NormalTok{      title\_gp = gpar(fontsize = 8),}
+\NormalTok{      labels\_gp = gpar(fontsize = 7)}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{  return(heat\_p)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Objeto DEA}\label{DEA_obj}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DE\_obj \textless{}{-} R6Class("DE\_obj",public = list(}
+\NormalTok{    \#================================================}
+\NormalTok{    \# atributes of the class}
+\NormalTok{    \#================================================}
+\NormalTok{    \#external attributes}
+\NormalTok{    Count\_matrix = NULL,meta\_data = NULL,name\_DE = NULL,}
+\NormalTok{    \#internal generated atributes}
+\NormalTok{    vsd = NULL,PCA\_p = NULL,Variance\_p = NULL,N\_filtered\_genes = NULL,}
+\NormalTok{    \#DEA atributes}
+\NormalTok{    DEA\_DESeq2 = list(res = NULL,DE\_genes = NULL,}
+\NormalTok{    volcano\_plot = NULL,heatmap = NULL,norm\_mat = NULL,gen\_res = NULL}
+\NormalTok{    ),}
+\NormalTok{    DEA\_edgeR = list(res = NULL,DE\_genes = NULL,}
+\NormalTok{      volcano\_plot = NULL,heatmap = NULL,norm\_mat = NULL,gen\_res = NULL}
+\NormalTok{    ),}
+\NormalTok{    \#atributes provided by the user}
+\NormalTok{    model = NULL,contrast = NULL,LFC = NULL,FDR = NULL,}
+\NormalTok{    \#================================================}
+\NormalTok{    \# Constructor}
+\NormalTok{    \#================================================}
+\NormalTok{    initialize = function(Count\_matrix,meta\_data,name\_DE = NULL) \{}
+\NormalTok{      self$Count\_matrix \textless{}{-} Count\_matrix}
+\NormalTok{      self$meta\_data \textless{}{-} meta\_data}
+\NormalTok{      self$name\_DE \textless{}{-} name\_DE}
+\NormalTok{    \},}
+\NormalTok{    \#================================================}
+\NormalTok{    \# pre vizualization methond}
+\NormalTok{    \#================================================}
+\NormalTok{    pre\_vi = function(var\_main, var\_covariates = NULL) \{}
+\NormalTok{      \#reviasr si el modelo trivial se ocupa}
+\NormalTok{      if (is.null(self$model)) \{}
+\NormalTok{        self$model \textless{}{-} formula(\textasciitilde{}1)}
+\NormalTok{        filter\_g = self$meta\_data[[var\_main]]}
+\NormalTok{      \} else \{}
+\NormalTok{        filter\_g = self$model}
+\NormalTok{      \}}
+\NormalTok{      \#create an object from DESeq2}
+\NormalTok{      dds = DESeqDataSetFromMatrix(countData = round(self$Count\_matrix),}
+\NormalTok{      colData = self$meta\_data,}
+\NormalTok{        design = self$model)}
+\NormalTok{      dds = filter\_by\_expression(dds,group = filter\_g)}
+\NormalTok{      vsd = vst(dds)}
+\NormalTok{      \# ================================================}
+\NormalTok{      \# PCA}
+\NormalTok{      \# ================================================}
+\NormalTok{      intgroup \textless{}{-} c(var\_main, var\_covariates)}
+\NormalTok{      pca\_data \textless{}{-} plotPCA(vsd,intgroup = intgroup,returnData = TRUE)}
+
+\NormalTok{      percentVar \textless{}{-} round(100 * attr(pca\_data, "percentVar"))}
+
+\NormalTok{      if (is.null(var\_covariates) || length(var\_covariates) == 0) \{}
+\NormalTok{        pca\_plot \textless{}{-} ggplot(pca\_data,aes(PC1,PC2,color = .data[[var\_main]])}
+\NormalTok{        ) +geom\_point(size = 4)}
+\NormalTok{      \} else \{}
+\NormalTok{        pca\_plot \textless{}{-} ggplot(pca\_data,aes(PC1,PC2,}
+\NormalTok{            color = .data[[var\_main]],}
+\NormalTok{            shape = .data[[var\_covariates[1]]]}
+\NormalTok{          )}
+\NormalTok{        ) +geom\_point(size = 4)}
+\NormalTok{      \}}
+\NormalTok{      pca\_plot \textless{}{-} pca\_plot +}
+\NormalTok{        xlab(paste0("PC1: ", percentVar[1], "\% variance")) +}
+\NormalTok{        ylab(paste0("PC2: ", percentVar[2], "\% variance")) +}
+\NormalTok{        theme\_classic(base\_size = 18) +}
+\NormalTok{        labs(title = paste("PCA", self$name\_DE))}
+\NormalTok{      \#================================================}
+\NormalTok{      \# Variance analyisis}
+\NormalTok{      \#================================================}
+\NormalTok{      expr\_matrix \textless{}{-} assay(vsd)}
+\NormalTok{      \#save the number of filtered genes in the condition}
+\NormalTok{      self$N\_filtered\_genes \textless{}{-} nrow(expr\_matrix)}
+\NormalTok{      form \textless{}{-} as.formula(paste("\textasciitilde{}",paste(intgroup, collapse = " + ")))}
+\NormalTok{      varPart \textless{}{-} variancePartition::fitExtractVarPartModel(}
+\NormalTok{        expr\_matrix,form,self$meta\_data)}
+\NormalTok{      vp \textless{}{-} sortCols(varPart)}
+\NormalTok{      variance\_plot \textless{}{-} plotVarPart(vp) +}
+\NormalTok{        labs(title = paste("Variance Explained", self$name\_DE))}
+\NormalTok{      \#asign the generated attributes}
+\NormalTok{      self$vsd \textless{}{-} vsd}
+\NormalTok{      self$PCA\_p \textless{}{-} pca\_plot}
+\NormalTok{      self$Variance\_p \textless{}{-} variance\_plot}
+\NormalTok{    \},}
+\NormalTok{    \#================================================}
+\NormalTok{    \# DEA methods}
+\NormalTok{    \#================================================}
+\NormalTok{    dea\_deseq2 = function() \{}
+\NormalTok{      dds = DESeqDataSetFromMatrix(}
+\NormalTok{        countData = round(self$Count\_matrix),}
+\NormalTok{        colData = self$meta\_data,}
+\NormalTok{        design = self$model}
+\NormalTok{      )}
+\NormalTok{      dds = filter\_by\_expression(dds, self$model)}
+\NormalTok{      \#make the nomalization and transformation}
+\NormalTok{      vsd = vst(dds)}
+\NormalTok{      \#asign the normalized matrix for the heatmap}
+\NormalTok{      self$DEA\_DESeq2$norm\_mat \textless{}{-} assay(vsd)}
+\NormalTok{      dds = DESeq(dds, sfType = "poscounts")}
+\NormalTok{      res = results(dds, contrast = self$contrast)}
+\NormalTok{      res$Gene\_name = gene\_name\_map[rownames(res), ]}
+\NormalTok{      \#save the objects generated by the analysis}
+\NormalTok{      self$DEA\_DESeq2$res \textless{}{-} res}
+\NormalTok{      \#obtain the DE\_genes}
+\NormalTok{      res\_DE\_genes = get\_DE\_genes(res,LFC = self$LFC,FDR = self$FDR,}
+\NormalTok{        paste0(self$name\_DE, "\_DESeq2")}
+\NormalTok{      )}
+\NormalTok{      self$DEA\_DESeq2$DE\_genes \textless{}{-} res\_DE\_genes[[1]]}
+\NormalTok{      self$DEA\_DESeq2$gen\_res \textless{}{-} res\_DE\_genes[[2]]}
+\NormalTok{      \#save plots}
+\NormalTok{      self$DEA\_DESeq2$volcano\_plot \textless{}{-} plot\_volcano(}
+\NormalTok{        self$DEA\_DESeq2$DE\_genes,}
+\NormalTok{        LFC = self$LFC,}
+\NormalTok{        FDR = self$FDR,}
+\NormalTok{        plot\_name = paste("Volcano", self$name\_DE, "DESeq2")}
+\NormalTok{      )}
+\NormalTok{      self$DEA\_DESeq2$heatmap \textless{}{-} plot\_heatmap(}
+\NormalTok{        self$DEA\_DESeq2$DE\_genes,}
+\NormalTok{        self$DEA\_DESeq2$norm\_mat,}
+\NormalTok{        plot\_name = paste("Heatmap", self$name\_DE, "DESeq2")}
+\NormalTok{      )}
+\NormalTok{    \},}
+\NormalTok{    dea\_edgeR = function() \{}
+\NormalTok{      dge = DGEList(counts = self$Count\_matrix, samples = self$meta\_data)}
+\NormalTok{      dge = filter\_by\_expression(dge, self$model, DEA\_package = "EdgeR")}
+\NormalTok{      \#make the normalized matrix}
+\NormalTok{      logCPM \textless{}{-} cpm(dge, log = TRUE, prior.count = 1)}
+\NormalTok{      \#save the normalized matrix}
+\NormalTok{      self$DEA\_edgeR$norm\_mat \textless{}{-} logCPM}
+\NormalTok{      dge = calcNormFactors(dge)}
+\NormalTok{      dge \textless{}{-} estimateDisp(}
+\NormalTok{        dge,}
+\NormalTok{        self$model}
+\NormalTok{      )}
+\NormalTok{      fit = glmQLFit(dge, self$model)}
+\NormalTok{      qlf = glmQLFTest(fit, contrast = self$contrast)}
+\NormalTok{      res\_edgeR = topTags(qlf, n = Inf)$table}
+\NormalTok{      res\_edgeR$Gene\_name = gene\_name\_map[rownames(res\_edgeR), ]}
+\NormalTok{      colnames(res\_edgeR)[colnames(res\_edgeR) == "logFC"] = "log2FoldChange"}
+\NormalTok{      colnames(res\_edgeR)[colnames(res\_edgeR) == "FDR"] = "padj"}
+
+\NormalTok{      \#save the edgeR result}
+\NormalTok{      self$DEA\_edgeR$res \textless{}{-} res\_edgeR}
+\NormalTok{      \#obtain the DE\_genes}
+\NormalTok{      res\_DE\_genes = get\_DE\_genes(res\_edgeR,LFC = self$LFC,FDR = self$FDR,}
+\NormalTok{        paste0(self$name\_DE, "\_edgeR")}
+\NormalTok{      )}
+\NormalTok{      self$DEA\_edgeR$DE\_genes \textless{}{-} res\_DE\_genes[[1]]}
+\NormalTok{      self$DEA\_edgeR$gen\_res \textless{}{-} res\_DE\_genes[[2]]}
+\NormalTok{      \#obtain the plots}
+\NormalTok{      self$DEA\_edgeR$volcano\_plot \textless{}{-} plot\_volcano(}
+\NormalTok{        self$DEA\_edgeR$DE\_genes,}
+\NormalTok{        LFC = self$LFC,}
+\NormalTok{        FDR = self$FDR,}
+\NormalTok{        plot\_name = paste("Volcano", self$name\_DE, "EdgeR")}
+\NormalTok{      )}
+\NormalTok{      self$DEA\_edgeR$heatmap \textless{}{-} plot\_heatmap(}
+\NormalTok{        self$DEA\_edgeR$DE\_genes,}
+\NormalTok{        self$DEA\_edgeR$norm\_mat,}
+\NormalTok{        plot\_name = paste("Heatmap", self$name\_DE, "EdgeR")}
+\NormalTok{      )}
+\NormalTok{    \}}
+\NormalTok{  )}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Función multiploteo}\label{funciuxf3n-multiploteo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{make\_multiplot \textless{}{-} function(plots\_list, name\_plot, colN = 4) \{}
+\NormalTok{  \#revisar si la lista esta vacia}
+\NormalTok{  if (length(plots\_list) \textless{} 1) \{return(NULL)\}}
+\NormalTok{  \#eliminar los posibles null de las listas}
+\NormalTok{  plots\_list \textless{}{-} Filter(Negate(is.null), plots\_list)}
+\NormalTok{  \#cambiar el tipo de objeto de lo plots}
+
+\NormalTok{  \#transformamos todos los plots a grob}
+\NormalTok{  plots\_list \textless{}{-} lapply(plots\_list, function(p) \{}
+\NormalTok{    \# ComplexHeatmap}
+\NormalTok{    if (inherits(p, "Heatmap") || inherits(p, "HeatmapList")) \{}
+\NormalTok{      return(grid::grid.grabExpr(ComplexHeatmap::draw(p))}
+\NormalTok{      )}
+\NormalTok{    \}}
+\NormalTok{    \# ggplot}
+\NormalTok{    if (inherits(p, "ggplot")) \{}
+\NormalTok{      return(ggplotGrob(p))}
+\NormalTok{    \}}
+
+\NormalTok{    \# ya es grob/gtable}
+\NormalTok{    if (inherits(p, "grob") ||inherits(p, "gTree") ||inherits(p, "gtable")}
+\NormalTok{    ) \{return(p)\}}
+\NormalTok{    stop("Tipo de plot no soportado: ",}
+\NormalTok{      paste(class(p), collapse = ", ")}
+\NormalTok{    )}
+\NormalTok{  \})}
+
+\NormalTok{  \#se hace el multiplot}
+\NormalTok{  multi\_plot \textless{}{-} arrangeGrob(}
+\NormalTok{    grobs = plots\_list,}
+\NormalTok{    ncol = colN,}
+\NormalTok{    top = textGrob(}
+\NormalTok{      name\_plot,}
+\NormalTok{      gp = gpar(fontsize = 16, fontface = "bold"),}
+\NormalTok{      y = unit(0.5, "npc")}
+\NormalTok{    )}
+\NormalTok{  )}
+\NormalTok{  return(multi\_plot)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{DEA principal}\label{DEA_prin}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\#Obtenemos los factores respectivos a cada variable}
+\NormalTok{treatment = metadata$treatment}
+\NormalTok{sex = metadata$sex}
+
+\NormalTok{\#definimos el modelo}
+\NormalTok{design\_add = model.matrix(\textasciitilde{} 0 + treatment + sex)}
+
+\NormalTok{\#Hacemos el contraste de interes}
+\NormalTok{contrast = makeContrasts(condition\_con = treatmentDependent {-} treatmentNaive,}
+\NormalTok{  levels = design\_add}
+\NormalTok{)}
+
+\NormalTok{\#cotas para considerar un número de genes diferencialmete expresado}
+\NormalTok{LFC = 1.5}
+\NormalTok{FDR = 1e{-}5}
+\NormalTok{DE\_hisat$LFC = LFC}
+\NormalTok{DE\_hisat$FDR = FDR}
+
+\NormalTok{\#asignamos los atributos y realizamos el analisis de expresion diferencial}
+\NormalTok{DE\_hisat$model = design\_add}
+\NormalTok{DE\_hisat$contrast = contrast[, "condition\_con"]}
+\NormalTok{DE\_hisat$dea\_deseq2()}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{edgeR hisat2}\label{DEA_hisat2_edgeR}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{\#Hacer el analisis de expresión diferencial con edegR}
+\NormalTok{DE\_hisat$dea\_edgeR()}
+\end{Highlighting}
+\end{Shaded}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Sample & ALL & DOWN & UP \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Astrocites\_hisat2\_pr\_edgeR & 10 & 3 & 7 \\
+\end{longtable}
+}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/DEA/DEA_hisat2_edgeR_volcano.png}
+
+}
+
+\caption{\label{fig-dea-hisat2-edger}Volcano plot y heatmap del análisis
+de expresión diferencial realizado sobre la matriz de conteos generada
+por HISAT2 utilizando \texttt{edgeR} bajo un modelo lineal aditivo. Se
+observa un número muy reducido de genes diferencialmente expresados bajo
+los criterios de selección establecidos (FDR ≤ 0.0001 y
+\textbar LFC\textbar{} ≥ 1).}
+
+\end{figure}%
+
+\subsubsection{STAR DEA}\label{DEA_star}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{\#Assignamos un objeto al la lista con el nombre de la matriz correspondiente}
+\NormalTok{DE\_star = DE\_obj$new(star\_count\_mtrx, metadata, "Astrocites\_eOH\_star\_pr")}
+
+\NormalTok{\#pre{-}vizualization}
+\NormalTok{DE\_star$pre\_vi("treatment", "sex")}
+
+\NormalTok{pre\_vi\_plots = make\_multiplot(}
+\NormalTok{  list(DE\_star$PCA\_p, DE\_star$Variance\_p),}
+\NormalTok{  "Plots de previzualización matriz de conteos star",}
+\NormalTok{  colN = 1}
+\NormalTok{)}
+\NormalTok{grid::grid.newpage()}
+\NormalTok{grid::grid.draw(pre\_vi\_plots)}
+
+\NormalTok{DE\_star$LFC = LFC}
+\NormalTok{DE\_star$FDR = FDR}
+
+\NormalTok{DE\_star$model = design\_add}
+\NormalTok{DE\_star$contrast = contrast[, "condition\_con"]}
+
+\NormalTok{DE\_star$dea\_deseq2()}
+\NormalTok{DE\_star$dea\_edgeR()}
+
+\NormalTok{over\_res = rbind(DE\_star$DEA\_edgeR$gen\_res, DE\_star$DEA\_DESeq2$gen\_res)}
+
+\NormalTok{knitr::kable(}
+\NormalTok{  head(over\_res),}
+\NormalTok{  format = "latex",}
+\NormalTok{  booktabs = TRUE,}
+\NormalTok{  caption = "Numero de genes Diferencialmente expresados hisat2 edgeR"}
+\NormalTok{) \%\textgreater{}\%}
+\NormalTok{  kable\_styling(latex\_options = c("scale\_down", "repeat\_header"))}
+
+
+\NormalTok{heatmap\_str\_ = DE\_star$DEA\_DESeq2$heatmap}
+\NormalTok{volcano\_str = DE\_star$DEA\_DESeq2$volcano\_plot}
+
+\NormalTok{DEA\_plots = make\_multiplot(}
+\NormalTok{  list(}
+\NormalTok{    DE\_star$DEA\_DESeq2$heatmap,}
+\NormalTok{    DE\_star$DEA\_edgeR$heatmap,}
+\NormalTok{    DE\_star$DEA\_DESeq2$volcano\_plot,}
+\NormalTok{    DE\_star$DEA\_edgeR$volcano\_plot}
+\NormalTok{  ),}
+\NormalTok{  "Resultados DEA matriz STAR ",}
+\NormalTok{  colN = 2}
+\NormalTok{)}
+\NormalTok{grid::grid.newpage()}
+\NormalTok{grid::grid.draw(DEA\_plots)}
+\end{Highlighting}
+\end{Shaded}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Sample & ALL & DOWN & UP \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Astrocites\_eOH\_star\_pr\_edgeR & 9 & 2 & 7 \\
+Astrocites\_eOH\_star\_pr\_DESeq2 & 64 & 18 & 46 \\
+\end{longtable}
+}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/DEA/previ_star.png}
+
+}
+
+\caption{\label{fig-previ-star}Previsualización de los conteos generados
+por STAR a partir del alineamiento de las lecturas contra el genoma de
+referencia. La representación incluye el PCA y el análisis de partición
+de varianza obtenidos mediante el método \texttt{pre\_vi}, utilizando
+las variables \texttt{treatment} y \texttt{sex} para evaluar su
+contribución a la variabilidad global de los datos(FDR ≤ 0.0001 y
+\textbar LFC\textbar{} ≥ 1).}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.6\linewidth,height=\textheight,keepaspectratio]{../results/DEA/DEA_star_deseq2_edgeR_res.png}
+
+}
+
+\caption{\label{fig-dea-star}Resultados del análisis de expresión
+diferencial utilizando \texttt{DESeq2} y \texttt{edgeR} sobre la matriz
+de conteos generada por STAR bajo el mismo modelo lineal aditivo
+empleado para HISAT2. Se muestran los volcano plots y heatmaps del DEA
+para ambas herramientas.s(FDR ≤ 0.0001 y \textbar LFC\textbar{} ≥ 1).}
+
+\end{figure}%
+
+\newpage
+
+\subsection{Enriquecimiento Funcional}\label{Func_en}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{FDR = 0.05}
+\NormalTok{LFC = 1}
+\NormalTok{\#all analized genes}
+\NormalTok{gene\_list\_all = DE\_hisat$DEA\_DESeq2$DE\_genes}
+\NormalTok{gene\_list\_gsea = gene\_list\_all[}
+\NormalTok{  order({-}gene\_list\_all$stat, na.last = TRUE), ,drop = FALSE]}
+
+\NormalTok{\#up and downregulated genes}
+\NormalTok{up = (gene\_list\_all$log2FoldChange \textgreater{} LFC) \& (gene\_list\_all$padj \textless{} FDR)}
+\NormalTok{up[which(is.na(up))] = FALSE}
+\NormalTok{down = (gene\_list\_all$log2FoldChange \textless{} {-}LFC) \& (gene\_list\_all$padj \textless{} FDR)}
+\NormalTok{down[which(is.na(down))] = FALSE}
+
+\NormalTok{\#keep only those Differentially expressed}
+\NormalTok{filtered\_DF = gene\_list\_all[up | down, , drop = FALSE]}
+\NormalTok{\#sort by the log fold changue}
+\NormalTok{gene\_list\_filtered \textless{}{-} filtered\_DF[}
+\NormalTok{  order({-}filtered\_DF$log2FoldChange, na.last = TRUE), ,drop = FALSE}
+\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{GO}\label{Func_en_GO}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{GO\_analysis \textless{}{-} function(}
+\NormalTok{  filtered\_df,}
+\NormalTok{  name\_mth,}
+\NormalTok{  go\_t = "BP",}
+\NormalTok{  name\_f = "GO\_enrich",}
+\NormalTok{  width=2500, }
+\NormalTok{  height=4000}
+\NormalTok{) \{}
+\NormalTok{  \# obtain the list of upregulated genes}
+\NormalTok{  up\_genes \textless{}{-} rownames(filtered\_df[filtered\_df$DE == "UP", ])}
+\NormalTok{  \# list of down regulated genes}
+\NormalTok{  down\_genes \textless{}{-} rownames(filtered\_df[filtered\_df$DE == "DOWN", ])}
+\NormalTok{  \# list for the genes}
+\NormalTok{  DE\_genes \textless{}{-} list(}
+\NormalTok{    "UP regulated" = up\_genes,}
+\NormalTok{    "DOWN regulated" = down\_genes}
+\NormalTok{  )}
+\NormalTok{  \# list for the multiplots}
+\NormalTok{  multi\_list \textless{}{-} list()}
+\NormalTok{  for (list\_genes in names(DE\_genes)) \{}
+\NormalTok{    \# make the GO enrichment}
+\NormalTok{    ego \textless{}{-} enrichGO(}
+\NormalTok{      gene = DE\_genes[[list\_genes]],}
+\NormalTok{      OrgDb = org.Mm.eg.db,}
+\NormalTok{      keyType = "ENSEMBL",}
+\NormalTok{      ont = go\_t,}
+\NormalTok{      pAdjustMethod = "BH",}
+\NormalTok{      pvalueCutoff = 0.05,}
+\NormalTok{      qvalueCutoff = 0.05}
+\NormalTok{    )}
+\NormalTok{    \#check if there are enrichment terms}
+\NormalTok{    if (is.null(ego) || nrow(as.data.frame(ego)) == 0) \{}
+\NormalTok{      multi\_list[[list\_genes]] \textless{}{-} NULL}
+\NormalTok{    \} else \{}
+\NormalTok{      \# make the bar plot}
+\NormalTok{      bar\_t \textless{}{-} barplot(ego, showCategory = 20)}
+
+\NormalTok{      \# make the dots plot}
+\NormalTok{      dot\_t \textless{}{-} dotplot(ego, showCategory = 30, label\_format = 60)}
+
+\NormalTok{      \# make the multiplot}
+\NormalTok{      multi\_t \textless{}{-} make\_multiplot(}
+\NormalTok{        list(bar\_t, dot\_t),}
+\NormalTok{        paste("GO analysis", list\_genes),}
+\NormalTok{        colN = 2}
+\NormalTok{      )}
+\NormalTok{      multi\_list[[list\_genes]] \textless{}{-} multi\_t}
+\NormalTok{    \}}
+\NormalTok{  \}}
+\NormalTok{  \# finally make the multiplot of multiplots}
+\NormalTok{  multi\_f \textless{}{-} make\_multiplot(multi\_list, name\_mth, colN = 1)}
+\NormalTok{  if (!is.null(multi\_f)) \{}
+\NormalTok{    png(}
+\NormalTok{      paste0("results/functional\_enrich/", name\_f),}
+\NormalTok{      width = width,}
+\NormalTok{      height = height,}
+\NormalTok{      res = 400}
+\NormalTok{    )}
+\NormalTok{    grid::grid.newpage()}
+\NormalTok{    grid::grid.draw(multi\_f)}
+\NormalTok{    dev.off()}
+\NormalTok{  \} else \{}
+\NormalTok{    print(paste("No se encontraron terminos enriquecidos en", go\_t))}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{GO\_analysis(}
+\NormalTok{  gene\_list\_filtered,}
+\NormalTok{  "Hisat2 Deseq2 DEA biological procces term enrichment",}
+\NormalTok{  "BP",}
+\NormalTok{  name\_f = "GO\_enrich\_hisat2\_deseq2\_BP.png", }
+\NormalTok{  width = 8000, }
+\NormalTok{  height = 6000}
+\NormalTok{)}
+
+\NormalTok{GO\_analysis(}
+\NormalTok{  gene\_list\_filtered,}
+\NormalTok{  "Hisat2 Deseq2 DEA celular compartment term enrichment",}
+\NormalTok{  "CC",}
+\NormalTok{  name\_f = "GO\_enrich\_hisat2\_deseq2\_CC.png",}
+\NormalTok{  width = 6500, }
+\NormalTok{  height = 5500}
+\NormalTok{)}
+
+\NormalTok{GO\_analysis(}
+\NormalTok{  gene\_list\_filtered,}
+\NormalTok{  "Hisat2 Deseq2 DEA molecular function term enrichment",}
+\NormalTok{  "MF",}
+\NormalTok{  name\_f = "GO\_enrich\_hisat2\_deseq2\_MF.png",}
+\NormalTok{  width = 6000, }
+\NormalTok{  height = 2500}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\newpage
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/functional_enrich/GO_enrich_hisat2_deseq2_CC.png}
+
+}
+
+\caption{Enriquecimiento de términos de compartimiento celular. Fue la
+única categoría en la que se encontraron términos enriquecidos para los
+genes subregulados en el fenotipo dependiente de etanol, principalmente
+relacionados con procesos de división celular. Por su parte, los genes
+sobreregulados mostraron enriquecimientos concordantes con los
+observados en la ontología de procesos biológicos (FDR ≤ 0.05 y
+\textbar LFC\textbar{} ≥ 1).}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{../results/functional_enrich/GO_enrich_hisat2_deseq2_MF.png}
+
+}
+
+\caption{Enriquecimiento de términos de función molecular. Solo se
+encontraron términos enriquecidos en los genes sobreregulados, cuyos
+resultados fueron consistentes con los observados en la ontología de
+procesos biológicos (FDR ≤ 0.05 y \textbar LFC\textbar{} ≥ 1).}
+
+\end{figure}%
+
+\newpage
+
+\subsubsection{GSEA}\label{Func_en_GSEA}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{GSEA\_analysis \textless{}{-} function(}
+\NormalTok{  filtered\_df,}
+\NormalTok{  name\_mth,}
+\NormalTok{  ont\_t,}
+\NormalTok{  num\_f,}
+\NormalTok{  name\_f = "GSEA.png"}
+\NormalTok{) \{}
+\NormalTok{  \# make the gene list}
+\NormalTok{  gene\_list \textless{}{-} filtered\_df$stat}
+\NormalTok{  names(gene\_list) \textless{}{-} rownames(filtered\_df)}
+
+\NormalTok{  \# make the GSEA analysis}
+\NormalTok{  gse \textless{}{-} gseGO(}
+\NormalTok{    gene\_list,}
+\NormalTok{    ont = ont\_t,}
+\NormalTok{    keyType = "ENSEMBL",}
+\NormalTok{    OrgDb = org.Mm.eg.db,}
+\NormalTok{    pvalueCutoff = 0.05,}
+\NormalTok{    eps = 1e{-}300,}
+\NormalTok{    verbose = FALSE}
+\NormalTok{  )}
+\NormalTok{  \#number of enriched features}
+\NormalTok{  print(gse)}
+\NormalTok{  num\_t = length(gse$Description)}
+\NormalTok{  print(paste("El numero de grupos enriquecidos son:", num\_t))}
+
+\NormalTok{  unique \textless{}{-} gseaplot2(gse, geneSetID = 1, title = gse$Description[1])}
+\NormalTok{  top \textless{}{-} gseaplot2(gse, geneSetID = 1:num\_f)}
+
+\NormalTok{  png(}
+\NormalTok{    paste0("results/functional\_enrich/", name\_f),}
+\NormalTok{    width = 2400,}
+\NormalTok{    height = 4500,}
+\NormalTok{    res = 300}
+\NormalTok{  )}
+\NormalTok{  print(plot\_list(unique, top, ncol = 1))}
+\NormalTok{  dev.off()}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{GSEA\_analysis(}
+\NormalTok{  gene\_list\_gsea,}
+\NormalTok{  "Hisat2 Deseq2 DEA biological procces term enrichment",}
+\NormalTok{  "BP",}
+\NormalTok{  7,}
+\NormalTok{  name\_f = "GSEA\_enrich\_hisat2\_deseq2\_BP.png"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+
+
+
+
+\end{document}
