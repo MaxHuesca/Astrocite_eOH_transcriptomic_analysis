@@ -56,7 +56,6 @@ editor: visual
 
 \newpage
 
-
 ```{r}
 R.home()
 version$version.string
@@ -1160,9 +1159,9 @@ knitr::kable(
   kable_styling(latex_options = c("scale_down", "repeat_header"))
 ```
 
-| Sample | ALL | DOWN | UP |
-|--------|-----|------|----|
-| Astrocites_hisat2_pr_DESeq2 | 123 | 50 | 73 |
+| Sample                      | ALL | DOWN | UP  |
+|-----------------------------|-----|------|-----|
+| Astrocites_hisat2_pr_DESeq2 | 123 | 50   | 73  |
 
 En esta configuración, definida a través de las herramientas de previsualización, se lograron identificar un total de **123 genes diferencialmente expresados**, de los cuales **73 se encuentran sobreexpresados** en los individuos que desarrollaron dependencia al alcohol, mientras que **50 se encuentran subexpresados**.
 
@@ -1183,7 +1182,7 @@ ggsave(
 )
 ```
 
-![Volcano plot del análisis de expresión diferencial (DESeq2) basado en la matriz HISAT2, mostrando genes significativamente regulados(FDR ≤ 0.0001 y |LFC| ≥ 1).](../results/DEA/Volcano_DEA_deseq2_hisat2.png){#fig-volcano-deseq2-hisat2 fig-pos="H" width="85%" fig-align="center"}
+![Volcano plot del análisis de expresión diferencial (DESeq2) basado en la matriz HISAT2, mostrando genes significativamente regulados(FDR ≤ 0.0001 y \|LFC\| ≥ 1).](../results/DEA/Volcano_DEA_deseq2_hisat2.png){#fig-volcano-deseq2-hisat2 fig-pos="H" width="85%" fig-align="center"}
 
 La visualización mediante el volcano plot nos permite profundizar en el punto anterior, ya que se observa que los cambios más pronunciados en la expresión corresponden principalmente a genes subexpresados en los individuos con dependencia al alcohol. Esto es relevante porque sugiere que programas biológicos que normalmente se encuentran activos de manera basal en los astrocitos podrían verse atenuados como consecuencia del consumo prolongado de alcohol, lo que potencialmente contribuiría a la disrupción de funciones esenciales de estas células.
 
@@ -1207,7 +1206,7 @@ ComplexHeatmap::draw(DE_hisat$DEA_DESeq2$heatmap)
 dev.off()
 ```
 
-![Heatmap de expresión diferencial generado con DESeq2 a partir de la matriz HISAT2, mostrando patrones de expresión entre condiciones(FDR ≤ 0.0001 y |LFC| ≥ 1).](../results/DEA/Heatmap_DEA_deseq2_hisat2.png){#fig-heatmap-deseq2-hisat2 fig-pos="H" width="85%" fig-align="center"}
+![Heatmap de expresión diferencial generado con DESeq2 a partir de la matriz HISAT2, mostrando patrones de expresión entre condiciones(FDR ≤ 0.0001 y \|LFC\| ≥ 1).](../results/DEA/Heatmap_DEA_deseq2_hisat2.png){#fig-heatmap-deseq2-hisat2 fig-pos="H" width="85%" fig-align="center"}
 
 Por último, el heatmap permite visualizar los perfiles de expresión característicos de ambas condiciones experimentales. Se puede observar cómo los z-scores calculados a partir de las matrices de conteos normalizadas presentan cierta heterogeneidad entre las muestras, lo que respalda la idea de que las diferencias detectadas corresponden a efectos biológicos relativamente discretos más que a cambios drásticos en la expresión génica.
 
@@ -1265,13 +1264,13 @@ gene_list_gsea = gene_list_all[
 name_DE_lsit = gene_list_all[
   gene_list_all$DE == "UP" | gene_list_all$DE == "DOWN",
 ]$Gene_name
-``` 
+```
 
 ### GO analysis
 
-Se utilizó el análisis de enriquecimiento de términos mediante Ontología de Genes (GO) para caracterizar las funciones biológicas asociadas a los genes diferencialmente expresados. En particular, se evaluaron las categorías de **proceso biológico** (`BP`), **compartimiento celular** (`CC`) y **función molecular** (`MF`) mediante la función `enrichGO` de la librería `clusterProfiler`[20], utilizando la información de anotación contenida en la base de datos `org.Mm.eg.db` y los identificadores `ENSMBL` presentes en la matriz de genes diferencialmente expresados.
+Se utilizó el análisis de enriquecimiento de términos mediante Ontología de Genes (GO) para caracterizar las funciones biológicas asociadas a los genes diferencialmente expresados. En particular, se evaluaron las categorías de **proceso biológico** (`BP`), **compartimiento celular** (`CC`) y **función molecular** (`MF`) mediante la función `enrichGO` de la librería `clusterProfiler`\[20\], utilizando la información de anotación contenida en la base de datos `org.Mm.eg.db` y los identificadores `ENSMBL` presentes en la matriz de genes diferencialmente expresados.
 
-Asimismo, para incrementar la cantidad de genes disponibles para el análisis de enriquecimiento y mejorar la capacidad de detección de categorías funcionales, se empleó un criterio de selección menos estricto que el utilizado en el DEA, conservando únicamente aquellos genes con un valor absoluto de **log2 fold change** mayor o igual a 1 (`|LFC| ≥ 1`) y un **FDR ≤ 0.05`. Posteriormente, los genes sobreexpresados y subexpresados se analizaron por separado con el fin de identificar procesos biológicos asociados específicamente a cada dirección del cambio transcripcional.
+Asimismo, para incrementar la cantidad de genes disponibles para el análisis de enriquecimiento y mejorar la capacidad de detección de categorías funcionales, se empleó un criterio de selección menos estricto que el utilizado en el DEA, conservando únicamente aquellos genes con un valor absoluto de **log2 fold change** mayor o igual a 1 (`|LFC| ≥ 1`) y un \*\*FDR ≤ 0.05\`. Posteriormente, los genes sobreexpresados y subexpresados se analizaron por separado con el fin de identificar procesos biológicos asociados específicamente a cada dirección del cambio transcripcional.
 
 ```{r go_analyis}
 #| warning: false
@@ -1346,8 +1345,7 @@ GO_analysis <- function(
     print(paste("No se encontraron terminos enriquecidos en", go_t))
   }
 }
-``` 
-
+```
 
 ```{r run_GO_edgeR_BP}
 #| echo: false
@@ -1389,7 +1387,7 @@ GO_analysis(
 )
 ```
 
-![Enriquecimiento funcional en procesos biológicos. Solo se encontró significancia en los genes sobreexpresados, principalmente relacionados con mecanismos de respuesta al daño celular (FDR ≤ 0.05 y |LFC| ≥ 1).](../results/functional_enrich/GO_enrich_hisat2_deseq2_BP.png){#GO_BP fig-pos="H" width="85%" fig-align="center"}
+![Enriquecimiento funcional en procesos biológicos. Solo se encontró significancia en los genes sobreexpresados, principalmente relacionados con mecanismos de respuesta al daño celular (FDR ≤ 0.05 y \|LFC\| ≥ 1).](../results/functional_enrich/GO_enrich_hisat2_deseq2_BP.png){#GO_BP fig-pos="H" width="85%" fig-align="center"}
 
 Se obtuvo una amplia variedad de términos enriquecidos dentro de los genes sobreexpresados en los astrocitos de individuos dependientes del alcohol. Entre los procesos más relevantes destacan aquellos relacionados con vías de señalización celular como **ERK1/ERK2** y **NF-κB**. Esta última resulta particularmente importante debido a su papel central en la regulación de la inflamación y de la respuesta inmune.
 
@@ -1400,7 +1398,6 @@ De manera consistente, también se identificó enriquecimiento en procesos relac
 Por su parte, el análisis de enriquecimiento por compartimiento celular (@GO_CC) mostró resultados concordantes con los observados en los procesos biológicos, destacando nuevamente la sobreexpresión de genes asociados al **MHC II**. Además, esta fue la única categoría en la que se identificaron términos enriquecidos para los genes subexpresados, predominando aquellos relacionados con la **división celular**.
 
 Finalmente, los términos enriquecidos en la categoría de función molecular (@GO_MF) también estuvieron estrechamente relacionados con componentes y funciones asociadas al **MHC II**, reforzando la evidencia de una activación de mecanismos inmunitarios e inflamatorios en los astrocitos de los individuos con dependencia al alcohol.
-
 
 ### GSEA
 
@@ -1453,7 +1450,7 @@ GSEA_analysis <- function(
   print(plot_list(unique, top, ncol = 1))
   dev.off()
 }
-``` 
+```
 
 ```{r run_GO_edgeR_BP}
 #| echo: false
@@ -1475,7 +1472,7 @@ GSEA_analysis(
 )
 ```
 
-!![Análisis GSEA realizado a partir del estadístico `stat` obtenido con `DESeq2`. En el panel superior se muestra el conjunto de genes con mayor enriquecimiento positivo, mientras que en el panel inferior se representan los conjuntos enriquecidos en el extremo opuesto del ranking. La posición de las líneas verticales indica la distribución de los genes pertenecientes a cada conjunto a lo largo de la lista ordenada de genes utilizada para el análisis.](../results/functional_enrich/GSEA_enrich_hisat2_deseq2_BP.png){#GSEA_BP fig-pos="H" width="85%" fig-align="center"}
+!![Análisis GSEA realizado a partir del estadístico stat obtenido con DESeq2. En el panel superior se muestra el conjunto de genes con mayor enriquecimiento positivo, mientras que en el panel inferior se representan los conjuntos enriquecidos en el extremo opuesto del ranking. La posición de las líneas verticales indica la distribución de los genes pertenecientes a cada conjunto a lo largo de la lista ordenada de genes utilizada para el análisis.](../results/functional_enrich/GSEA_enrich_hisat2_deseq2_BP.png){#GSEA_BP fig-pos="H" width="85%" fig-align="center"}
 
 El análisis GSEA mostró resultados consistentes con los obtenidos previamente mediante el análisis de enriquecimiento de términos. El conjunto de genes más enriquecido correspondió al procesamiento y presentación de antígenos, encontrándose sobre regulado en los astrocitos de los individuos con dependencia al etanol. Esta tendencia se mantiene en los otros siete conjuntos de genes enriquecidos (parte inferior de la figura @GSEA_BP), donde predominan procesos relacionados con la respuesta inflamatoria mediada por interferón, el procesamiento y presentación de antígenos asociados a la respuesta inmune, así como mecanismos de detoxificación celular.
 
@@ -1483,7 +1480,7 @@ En conjunto, estos resultados refuerzan la evidencia de una activación de progr
 
 ### String
 
-A diferencia de los análisis de enriquecimiento de términos, el enriquecimiento funcional que realiza `STRING` [21] se basa en las interacciones proteína-proteína que pueden presentar nuestros genes diferencialmente expresados. Se aplicó este análisis para evaluar la conexión entre los genes identificados utilizando las mismas cotas asignadas para el DEA (FDR ≤ 0.0001 y |LFC| ≥ 1). Debido a que los efectos observados son discretos, se seleccionó un score mínimo de interacción bajo de 150.
+A diferencia de los análisis de enriquecimiento de términos, el enriquecimiento funcional que realiza `STRING` \[21\] se basa en las interacciones proteína-proteína que pueden presentar nuestros genes diferencialmente expresados. Se aplicó este análisis para evaluar la conexión entre los genes identificados utilizando las mismas cotas asignadas para el DEA (FDR ≤ 0.0001 y \|LFC\| ≥ 1). Debido a que los efectos observados son discretos, se seleccionó un score mínimo de interacción bajo de 150.
 
 !![Red de interacción generada mediante string con una confianza de interacción de 150.](../results/functional_enrich/String_analyisis_DEA_genes.png){#String_graph fig-pos="H" width="85%" fig-align="center"}
 
@@ -1491,19 +1488,15 @@ Se puede observar que, de acuerdo con el score bajo de interacción utilizado, l
 
 Un aspecto relevante de este análisis es la conexión entre procesos biológicos que no resulta tan evidente en los dos análisis anteriores. En particular, los términos enriquecidos relacionados con la respuesta inmune y la proliferación de fibroblastos se encuentran conectados mediante las interacciones identificadas por `STRING`. Esto se observa especialmente alrededor del nodo central **Cd74**, el cual participa en el procesamiento y estabilización de antígenos asociados al complejo MHC II. Como era de esperarse, este gen interactúa con otras proteínas relacionadas con la respuesta inmune, como **Ifitm3** e **Ifit3**, asociadas a la señalización por interferón, así como con genes vinculados a la proliferación fibroblástica, entre ellos **S100a11**, **Itga4** y **Krt15**. En conjunto, estos resultados sugieren que la exposición al etanol induce cambios transcripcionales no solo relacionados con la respuesta inflamatoria, sino también con mecanismos asociados al daño celular y la toxicidad tisular.
 
-
-
 # Discusión y conclusiones
 
-El análisis de expresión diferencial es un procedimiento compuesto por múltiples pasos antes de llegar a lo que aparenta ser la etapa más directa: las pruebas de hipótesis. En este proyecto se comprobó que este proceso no es del todo *straight-forward*, ya que existe una alta dependencia tanto de los datos como de las herramientas utilizadas, pudiendo diferir de lo reportado en la literatura [18]. Particularmente, para los datos analizados en este estudio, el alineador `hisat2` mostró un mejor desempeño, aunque con un claro *trade-off* en el tiempo consumido, en contraste con lo reportado previamente [19]. Por su parte, la elección de la herramienta para realizar el DEA también resultó relevante, ya que `DESeq2` mostró una mayor capacidad de detección frente a `edgeR`, a pesar de que ambas herramientas modelan las diferencias entre condiciones utilizando la distribución binomial negativa.
+El análisis de expresión diferencial es un procedimiento compuesto por múltiples pasos antes de llegar a lo que aparenta ser la etapa más directa: las pruebas de hipótesis. En este proyecto se comprobó que este proceso no es del todo *straight-forward*, ya que existe una alta dependencia tanto de los datos como de las herramientas utilizadas, pudiendo diferir de lo reportado en la literatura \[18\]. Particularmente, para los datos analizados en este estudio, el alineador `hisat2` mostró un mejor desempeño, aunque con un claro *trade-off* en el tiempo consumido, en contraste con lo reportado previamente \[19\]. Por su parte, la elección de la herramienta para realizar el DEA también resultó relevante, ya que `DESeq2` mostró una mayor capacidad de detección frente a `edgeR`, a pesar de que ambas herramientas modelan las diferencias entre condiciones utilizando la distribución binomial negativa.
 
 Por otro lado, la etapa de previsualización resultó crítica, pues desde este punto las diferencias biológicas entre nuestras dos condiciones de estudio (astrocitos obtenidos de ratones dependientes de etanol frente a ratones no consumidores) parecían ser discretas, aunque con una clara separación entre condiciones. Esto se relaciona con la varianza moderada observada mediante el análisis de partición de varianza, el cual ayudó a definir un modelo lineal aditivo considerando la contribución de ambas variables presentes en los datos. Gracias a ello fue posible identificar un mayor número de diferencias biológicas bajo criterios estadísticos estrictos.
 
-Este proyecto demostró la existencia de cambios en el panorama transcripcional de los astrocitos del núcleo accumbens tras la exposición crónica al etanol. La variación observada entre las condiciones experimentales parece estar impulsada principalmente por efectos discretos en la expresión génica. Resulta particularmente relevante que un número relativamente pequeño de genes diferencialmente expresados permitiera identificar posibles programas fisiológicos asociados a la respuesta crónica al etanol mediante análisis de enriquecimiento de términos (GO) y enriquecimiento de conjuntos génicos (GSEA). Estos análisis permitieron identificar una clara respuesta inflamatoria en los astrocitos @GO_BP, un hallazgo relevante debido a que numerosos procesos neurodegenerativos se encuentran asociados con estados de neuroinflamación, los cuales han sido propuestos como posibles impulsores de la neurotoxicidad mediada por astrocitos [1,3]. Asimismo, estos resultados permiten plantear la hipótesis de una posible disminución de la plasticidad cerebral asociada al consumo de alcohol, reflejada por la subregulación de genes relacionados con la división celular en células astrogliales.
+Este proyecto demostró la existencia de cambios en el panorama transcripcional de los astrocitos del núcleo accumbens tras la exposición crónica al etanol. La variación observada entre las condiciones experimentales parece estar impulsada principalmente por efectos discretos en la expresión génica. Resulta particularmente relevante que un número relativamente pequeño de genes diferencialmente expresados permitiera identificar posibles programas fisiológicos asociados a la respuesta crónica al etanol mediante análisis de enriquecimiento de términos (GO) y enriquecimiento de conjuntos génicos (GSEA). Estos análisis permitieron identificar una clara respuesta inflamatoria en los astrocitos @GO_BP, un hallazgo relevante debido a que numerosos procesos neurodegenerativos se encuentran asociados con estados de neuroinflamación, los cuales han sido propuestos como posibles impulsores de la neurotoxicidad mediada por astrocitos \[1,3\]. Asimismo, estos resultados permiten plantear la hipótesis de una posible disminución de la plasticidad cerebral asociada al consumo de alcohol, reflejada por la subregulación de genes relacionados con la división celular en células astrogliales.
 
 Finalmente, el análisis realizado mediante `STRING` permitió integrar los resultados obtenidos por GO y GSEA dentro de una red de interacciones proteína-proteína sustentadas tanto por evidencia experimental como por asociaciones inferidas. Estas interacciones sugieren la existencia de un programa transcripcional coordinado relacionado con procesos inflamatorios y su influencia sobre distintos componentes celulares, como la matriz extracelular y el citoesqueleto. En conjunto, estos resultados apuntan hacia mecanismos asociados con la respuesta al daño celular y la toxicidad inducida por la exposición crónica al etanol.
-
-
 
 # Referencias
 
@@ -1543,12 +1536,11 @@ Finalmente, el análisis realizado mediante `STRING` permitió integrar los resu
 
 18. Coxe, T., Burks, D. J., Singh, U., Mittler, R., & Azad, R. K. (2024). Benchmarking RNA-Seq Aligners at Base-Level and Junction Base-Level Resolution Using the Arabidopsis thaliana Genome. Plants, 13(5), 582. https://doi.org/10.3390/plants13050582
 
-19. Baruzzo, G., Hayer, K. E., Kim, E. J., Di Camillo, B., FitzGerald, G. A., & Grant, G. R. (2016). Simulation-based comprehensive benchmarking of RNA-seq aligners. Nature Methods, 14(2), 135-139. https://doi.org/10.1038/nmeth.4106 
+19. Baruzzo, G., Hayer, K. E., Kim, E. J., Di Camillo, B., FitzGerald, G. A., & Grant, G. R. (2016). Simulation-based comprehensive benchmarking of RNA-seq aligners. Nature Methods, 14(2), 135-139. https://doi.org/10.1038/nmeth.4106
 
 20. Yu, G., Wang, L., Han, Y., & He, Q. (2012). clusterProfiler: an R Package for Comparing Biological Themes Among Gene Clusters. OMICS A Journal Of Integrative Biology, 16(5), 284-287. https://doi.org/10.1089/omi.2011.0118
 
-21. STRING. (2023, 26 julio). *STRING: functional protein association networks*. https://string-db.org/cgi/input?sessionId=bEVlDPhubey6&input_page_show_search=off  
-
+21. STRING. (2023, 26 julio). *STRING: functional protein association networks*. https://string-db.org/cgi/input?sessionId=bEVlDPhubey6&input_page_show_search=off
 
 # Anexo
 
@@ -1861,12 +1853,11 @@ grid::grid.draw(DEA_edgeR_res)
 dev.off()
 ```
 
-| Sample | ALL | DOWN | UP |
-|--------|-----|------|----|
-| Astrocites_hisat2_pr_edgeR | 10 | 3 | 7 |
+| Sample                     | ALL | DOWN | UP  |
+|----------------------------|-----|------|-----|
+| Astrocites_hisat2_pr_edgeR | 10  | 3    | 7   |
 
-![Volcano plot  y heatmap del análisis de expresión diferencial realizado sobre la matriz de conteos generada por HISAT2 utilizando `edgeR` bajo un modelo lineal aditivo. Se observa un número muy reducido de genes diferencialmente expresados bajo los criterios de selección establecidos (FDR ≤ 0.0001 y |LFC| ≥ 1).](../results/DEA/DEA_hisat2_edgeR_volcano.png){#fig-dea-hisat2-edger fig-pos="H" width="85%" fig-align="center"}
-
+![Volcano plot y heatmap del análisis de expresión diferencial realizado sobre la matriz de conteos generada por HISAT2 utilizando `edgeR` bajo un modelo lineal aditivo. Se observa un número muy reducido de genes diferencialmente expresados bajo los criterios de selección establecidos (FDR ≤ 0.0001 y \|LFC\| ≥ 1).](../results/DEA/DEA_hisat2_edgeR_volcano.png){#fig-dea-hisat2-edger fig-pos="H" width="85%" fig-align="center"}
 
 ### STAR DEA
 
@@ -1942,21 +1933,21 @@ grid::grid.newpage()
 grid::grid.draw(DEA_plots)
 
 dev.off()
-``` 
+```
 
-| Sample | ALL | DOWN | UP |
-|--------|-----|------|----|
-| Astrocites_eOH_star_pr_edgeR | 9 | 2 | 7 |
-| Astrocites_eOH_star_pr_DESeq2 | 64 | 18 | 46 |
+| Sample                        | ALL | DOWN | UP  |
+|-------------------------------|-----|------|-----|
+| Astrocites_eOH_star_pr_edgeR  | 9   | 2    | 7   |
+| Astrocites_eOH_star_pr_DESeq2 | 64  | 18   | 46  |
 
-![Previsualización de los conteos generados por STAR a partir del alineamiento de las lecturas contra el genoma de referencia. La representación incluye el PCA y el análisis de partición de varianza obtenidos mediante el método `pre_vi`, utilizando las variables `treatment` y `sex` para evaluar su contribución a la variabilidad global de los datos(FDR ≤ 0.0001 y |LFC| ≥ 1).](../results/DEA/previ_star.png){#fig-previ-star fig-pos="H" width="85%" fig-align="center"}
+![Previsualización de los conteos generados por STAR a partir del alineamiento de las lecturas contra el genoma de referencia. La representación incluye el PCA y el análisis de partición de varianza obtenidos mediante el método `pre_vi`, utilizando las variables `treatment` y `sex` para evaluar su contribución a la variabilidad global de los datos(FDR ≤ 0.0001 y \|LFC\| ≥ 1).](../results/DEA/previ_star.png){#fig-previ-star fig-pos="H" width="85%" fig-align="center"}
 
-![Resultados del análisis de expresión diferencial utilizando `DESeq2` y `edgeR` sobre la matriz de conteos generada por STAR bajo el mismo modelo lineal aditivo empleado para HISAT2. Se muestran los volcano plots y heatmaps del DEA para ambas herramientas.s(FDR ≤ 0.0001 y |LFC| ≥ 1).](../results/DEA/DEA_star_deseq2_edgeR_res.png){#fig-dea-star fig-pos="H" width="85%" fig-align="center"}
+![Resultados del análisis de expresión diferencial utilizando `DESeq2` y `edgeR` sobre la matriz de conteos generada por STAR bajo el mismo modelo lineal aditivo empleado para HISAT2. Se muestran los volcano plots y heatmaps del DEA para ambas herramientas.s(FDR ≤ 0.0001 y \|LFC\| ≥ 1).](../results/DEA/DEA_star_deseq2_edgeR_res.png){#fig-dea-star fig-pos="H" width="85%" fig-align="center"}
 
 ## Enriquecimiento Funcional
 
 ### GO
 
-![Enriquecimiento de términos de compartimiento celular. Fue la única categoría en la que se encontraron términos enriquecidos para los genes subregulados en el fenotipo dependiente de etanol, principalmente relacionados con procesos de división celular. Por su parte, los genes sobreregulados mostraron enriquecimientos concordantes con los observados en la ontología de procesos biológicos (FDR ≤ 0.05 y |LFC| ≥ 1).](../results/functional_enrich/GO_enrich_hisat2_deseq2_CC.png){#GO_CC fig-pos="H" width="85%" fig-align="center"}
+![Enriquecimiento de términos de compartimiento celular. Fue la única categoría en la que se encontraron términos enriquecidos para los genes subregulados en el fenotipo dependiente de etanol, principalmente relacionados con procesos de división celular. Por su parte, los genes sobreregulados mostraron enriquecimientos concordantes con los observados en la ontología de procesos biológicos (FDR ≤ 0.05 y \|LFC\| ≥ 1).](../results/functional_enrich/GO_enrich_hisat2_deseq2_CC.png){#GO_CC fig-pos="H" width="85%" fig-align="center"}
 
-![Enriquecimiento de términos de función molecular. Solo se encontraron términos enriquecidos en los genes sobreregulados, cuyos resultados fueron consistentes con los observados en la ontología de procesos biológicos (FDR ≤ 0.05 y |LFC| ≥ 1).](../results/functional_enrich/GO_enrich_hisat2_deseq2_MF.png){#GO_MF fig-pos="H" width="85%" fig-align="center"}
+![Enriquecimiento de términos de función molecular. Solo se encontraron términos enriquecidos en los genes sobreregulados, cuyos resultados fueron consistentes con los observados en la ontología de procesos biológicos (FDR ≤ 0.05 y \|LFC\| ≥ 1).](../results/functional_enrich/GO_enrich_hisat2_deseq2_MF.png){#GO_MF fig-pos="H" width="85%" fig-align="center"}

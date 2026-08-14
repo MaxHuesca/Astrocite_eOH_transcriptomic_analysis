@@ -56,7 +56,6 @@ params.feature_env = params.feature_env ?: "subread"
 nextflow.enable.dsl=2
 
 include { report_QC as raw_fastQC } from './nf_modules/QC'
-include { report_QC as clean_fastQC } from './nf_modules/QC'
 
 process Download_srr {
     //name of the nextflow job 
