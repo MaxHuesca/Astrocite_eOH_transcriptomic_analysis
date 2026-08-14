@@ -31,6 +31,57 @@ Se encontró que
 - [Dsicusión](#discusión-y-conclusiones)
 - [Análisis adicionales](#análisis-adicionales)
 
+### Estructura repo 
+```
+.
+├── data
+│   ├── GSE308880_eOH_dependence_metadata_clean.csv
+│   ├── GSE308880_eOH_dependence_metadata.csv
+│   ├── in_align_srr.csv
+│   ├── in_clean_srr.csv
+│   └── in_dw_srr.csv
+├── README.md
+├── results
+│   ├── aligned_vs_time.png
+│   ├── DEA
+│   │   ├── DEA_hisat2_edgeR_volcano.png
+│   │   ├── DEA_star_deseq2_edgeR_res.png
+│   │   ├── Heatmap_DEA_deseq2_hisat2.png
+│   │   ├── PCA_pre_vi_hisat2.png
+│   │   ├── previ_star.png
+│   │   ├── VarPart_pre_vi_hisat2.png
+│   │   └── Volcano_DEA_deseq2_hisat2.png
+│   ├── functional_enrich
+│   │   ├── GO_enrich_hisat2_deseq2_BP.png
+│   │   ├── GO_enrich_hisat2_deseq2_CC.png
+│   │   ├── GO_enrich_hisat2_deseq2_MF.png
+│   │   ├── GSEA_enrich_hisat2_deseq2_BP.png
+│   │   └── String_analyisis_DEA_genes.png
+│   ├── Multi_mapped_vs_no_aligned.png
+│   ├── pipeline_over_nextflow.png
+│   └── QC
+│       ├── fastqc_adapter_content_plot_raw_data.png
+│       ├── fastqc_per_base_sequence_content_plot_raw_data.png
+│       ├── fastqc_per_sequence_gc_content_plot_raw_data.png
+│       ├── fastqc-status-check-heatmap_clean_data.png
+│       └── fastqc-status-check-heatmap_raw_data.png
+└── src
+    ├── align_hisat.sh
+    ├── align_star.sh
+    ├── DeLoSantosHuesca_IsmaelMaximiliano_ProyectoFinal.pdf
+    ├── DeLoSantosHuesca_IsmaelMaximiliano_ProyectoFinal.qmd
+    ├── DeLoSantosHuesca_IsmaelMaximiliano_ProyectoFinal_src.qmd
+    ├── Logo_LCG.png
+    ├── Logo_UNAM.png
+    ├── nf_modules
+    │   └── QC.nf
+    ├── parse_align_stats.py
+    ├── portada.tex
+    ├── preprocces.config
+    ├── preprocces_data.nf
+    └── run_fastp.sh
+```
+
 ## Obtención de los datos 
 
 <div align="justify">
