@@ -129,7 +129,7 @@ El pipeline utilizado para el alineamiento 5 implementa también la generación 
 ## DEA 
 <div align="justify">
 
-Para el DEA se opto por la creación de un objeto modular R6 que implementa tanto la previsualización de los datos así como las pruebas estadísticas pertinentes mediante edgeR o DESeq2 [DEA_src](./src/DeLoSantosHuesca_IsmaelMaximiliano_ProyectoFinal_src)
+Para el DEA se opto por la creación de un objeto modular R6 que implementa tanto la previsualización de los datos así como las pruebas estadísticas pertinentes mediante edgeR o DESeq2 [DEA_src](./src/DeLoSantosHuesca_IsmaelMaximiliano_ProyectoFinal_src.qmd)
 
 Ambas librerías comparten el hecho de modelar los conteos mediante una distribución binomial negativa para determinar si los genes están diferencialmente expresados. Sin embargo, las diferencias entre ellas radican principalmente en la forma en que estiman la dispersión y las varianzas antes del modelado. Por ejemplo, `DESeq2` utiliza estrategias de contracción (*shrinkage*) y estimaciones basadas en la relación media-varianza, mientras que `edgeR` emplea estimaciones de cuasi-verosimilitud (*quasi-likelihood*).
 
@@ -195,7 +195,7 @@ Ambos análisis hacen uso de un objeto `vst` generado mediante la paquetería `D
 
 Por su parte, el análisis de partición de varianza mostró una influencia clara de ambas variables consideradas sobre la variabilidad de nuestros datos. Ambas presentaron distribuciones similares en cuanto a la proporción de varianza explicada, lo que resulta consistente con la naturaleza relativamente discreta de los efectos biológicos que buscamos detectar. Estos resultados respaldan la importancia de considerar ambas variables dentro del modelo lineal utilizado para el análisis de expresión diferencial.
 
-> La matriz generada por el alineador STAR mostró distribuciones similares durante la previsualización. Sin embargo, estas presentaron un mayor nivel de ruido y una separación menos definida entre las muestras en el PCA [STAR DEA](#DEA_star).
+> La matriz generada por el alineador STAR mostró distribuciones similares durante la previsualización. Sin embargo, estas presentaron un mayor nivel de ruido y una separación menos definida entre las muestras en el PCA.
 
 
 </div>
@@ -233,7 +233,7 @@ Es importante señalar que los genes clasificados como subexpresados no deben in
 
 </div>
 
-Code [DEA](./src/DeLoSantosHuesca_IsmaelMaximiliano_ProyectoFinal_src).
+Code [DEA](./src/DeLoSantosHuesca_IsmaelMaximiliano_ProyectoFinal_src.qmd)
 
 ### Representación resultados 
 
@@ -300,7 +300,7 @@ Finalmente, los términos enriquecidos en la categoría de función molecular ta
 
 </div>
 
-Code [GO](./src/DeLoSantosHuesca_IsmaelMaximiliano_ProyectoFinal_src)
+Code [GO](./src/DeLoSantosHuesca_IsmaelMaximiliano_ProyectoFinal_src.qmd)
 
 ### GSEA
 
