@@ -15,10 +15,12 @@ Particularmente, los astrocitos son células gliales que participan en el manten
 
 De esta forma, resulta relevante explorar los mecanismos que influencian los procesos neuroinflamatorios y afectan la homeostasis de estas células, cuyos fenotipos activados y neurotóxicos se encuentran asociados a enfermedades neurodegenerativas como el Alzheimer 4. Un estudio reciente explora la influencia de la dependencia al alcohol (etanol, EtOH) en ratones Aldh1l1-eGFP/Rpl10a 5.
 
-En este repositorio se llevó acabo una análisis de expresión diferencial (DEA) desde la obtención de los datos y su preprosesamiento hasta las pruebas estadisticas y el enriquecimiento funcional para saber la influencia del etanol sobre la expresión de genes en los astrocitos al ser células muy importantes para el soporte del tejido nervioso tanto en humano como en ratones.
+En este repositorio se llevó acabo una análisis de expresión diferencial (DEA) desde la obtención de los datos y su preprocesamiento hasta las pruebas estadísticas y el enriquecimiento funcional para saber la influencia del etanol sobre la expresión de genes en los astrocitos al ser células muy importantes para el soporte del tejido nervioso tanto en humano como en ratones.
 
-Se encontró que
+Se encontró que metodológicamente la elección de herramientas como el alineador son muy importantes a la hora de hacer este tipo de análisis , asi como aquella usada para hacer las pruebas estadísticas en el DEA, siendo hisat2 superior a STAR en este análisis, siendo ambos alineadores tradicionales, por su parte DESeq2 demostró un mejor desempeño a la hora de contender con el ruido residual presente en los datos gracias a ello fue posible identificar un mayor número de diferencias biológicas bajo criterios estadísticos estrictos.
 
+ A si mismo sse demostro la existencia de cambios en el panorama transcripcional de los astrocitos propios del núcleo accumbens tras la exposición crónica al etanol, dentro de estos cambios se identifico una clara respuesta inflamatoria en los astrocitos lo que permite plantear la hipótesis de una posible disminución de la plasticidad cerebral asociada al consumo de alcohol, reflejada por la subregulación de genes relacionados con la división celular en células astrogliales así como su influencia sobre distintos componentes celulares, como la matriz extracelular y el citoesqueleto. En conjunto, estos resultados apuntan hacia mecanismos asociados con la respuesta al daño celular y la toxicidad inducida por la exposición crónica al etanol.
+ 
 </div>
 
 
@@ -35,36 +37,16 @@ Se encontró que
 ```
 .
 ├── data
-│   ├── GSE308880_eOH_dependence_metadata_clean.csv
-│   ├── GSE308880_eOH_dependence_metadata.csv
-│   ├── in_align_srr.csv
-│   ├── in_clean_srr.csv
-│   └── in_dw_srr.csv
+│   ├── Información y metadatos de las muestras usadas
 ├── README.md
 ├── results
-│   ├── aligned_vs_time.png
 │   ├── DEA
-│   │   ├── DEA_hisat2_edgeR_volcano.png
-│   │   ├── DEA_star_deseq2_edgeR_res.png
-│   │   ├── Heatmap_DEA_deseq2_hisat2.png
-│   │   ├── PCA_pre_vi_hisat2.png
-│   │   ├── previ_star.png
-│   │   ├── VarPart_pre_vi_hisat2.png
-│   │   └── Volcano_DEA_deseq2_hisat2.png
+│   │   ├── plots resutados DEA
 │   ├── functional_enrich
-│   │   ├── GO_enrich_hisat2_deseq2_BP.png
-│   │   ├── GO_enrich_hisat2_deseq2_CC.png
-│   │   ├── GO_enrich_hisat2_deseq2_MF.png
-│   │   ├── GSEA_enrich_hisat2_deseq2_BP.png
-│   │   └── String_analyisis_DEA_genes.png
-│   ├── Multi_mapped_vs_no_aligned.png
+│   │   ├── plots resultados enriquecimiento funcional
 │   ├── pipeline_over_nextflow.png
 │   └── QC
-│       ├── fastqc_adapter_content_plot_raw_data.png
-│       ├── fastqc_per_base_sequence_content_plot_raw_data.png
-│       ├── fastqc_per_sequence_gc_content_plot_raw_data.png
-│       ├── fastqc-status-check-heatmap_clean_data.png
-│       └── fastqc-status-check-heatmap_raw_data.png
+│       ├── plots del control de calidad
 └── src
     ├── align_hisat.sh
     ├── align_star.sh
@@ -127,6 +109,8 @@ Así como un sesgo hacia bases T al inicio de las lecturas. Por ello se ejecutó
 <div align="justify">
 
 El pipeline de nextflow [Preprocesmiento nextflow](./src/preprocces_data.nf) lleva a cabo la tareas como la limpieza realizada pero asi mismo el alineamiento de las secuencias mediante dos alineadores tradicionales ampliamente empleados en la literatura. Por un lado, HISAT2 es reconocido por su bajo consumo de recursos computacionales y menor tiempo de ejecución en comparación con otros alineadores tradicionales, siendo una opción accesible para estudios de gran escala y mostrando un buen desempeño en lecturas cortas [18]. Por otro lado, se utilizó STAR, una herramienta destacada por su alta sensibilidad, rendimiento y capacidad de mapeo único [19].
+
+Para esta parte del análisis se utilizó  la misma versión del genoma de referenciade Mus musculus, GRCm39, pero en su última release (M38), incluyendo todas las secuencias (ALL) del genoma completo [17], a diferencia de la versión M28 utilizada en el estudio original, así cómo  el archivo Comprehensive gene annotation para todas las secuencias (ALL) correspondiente a la misma versión y release (GRCm39 M38).
 
 </div>
 
@@ -368,7 +352,7 @@ El análisis de expresión diferencial es un procedimiento compuesto por múltip
 
 Por otro lado, la etapa de previsualización resultó crítica, pues desde este punto las diferencias biológicas entre nuestras dos condiciones de estudio (astrocitos obtenidos de ratones dependientes de etanol frente a ratones no consumidores) parecían ser discretas, aunque con una clara separación entre condiciones. Esto se relaciona con la varianza moderada observada mediante el análisis de partición de varianza, el cual ayudó a definir un modelo lineal aditivo considerando la contribución de ambas variables presentes en los datos. Gracias a ello fue posible identificar un mayor número de diferencias biológicas bajo criterios estadísticos estrictos.
 
-Este proyecto demostró la existencia de cambios en el panorama transcripcional de los astrocitos del núcleo accumbens tras la exposición crónica al etanol. La variación observada entre las condiciones experimentales parece estar impulsada principalmente por efectos discretos en la expresión génica. Resulta particularmente relevante que un número relativamente pequeño de genes diferencialmente expresados permitiera identificar posibles programas fisiológicos asociados a la respuesta crónica al etanol mediante análisis de enriquecimiento de términos (GO) y enriquecimiento de conjuntos génicos (GSEA). Estos análisis permitieron identificar una clara respuesta inflamatoria en los astrocitos @fig-go-bp, un hallazgo relevante debido a que numerosos procesos neurodegenerativos se encuentran asociados con estados de neuroinflamación, los cuales han sido propuestos como posibles impulsores de la neurotoxicidad mediada por astrocitos \[1,3\]. Asimismo, estos resultados permiten plantear la hipótesis de una posible disminución de la plasticidad cerebral asociada al consumo de alcohol, reflejada por la subregulación de genes relacionados con la división celular en células astrogliales.
+Este proyecto demostró la existencia de cambios en el panorama transcripcional de los astrocitos del núcleo accumbens tras la exposición crónica al etanol. La variación observada entre las condiciones experimentales parece estar impulsada principalmente por efectos discretos en la expresión génica. Resulta particularmente relevante que un número relativamente pequeño de genes diferencialmente expresados permitiera identificar posibles programas fisiológicos asociados a la respuesta crónica al etanol mediante análisis de enriquecimiento de términos (GO) y enriquecimiento de conjuntos génicos (GSEA). Estos análisis permitieron identificar una clara respuesta inflamatoria en los astrocitos, un hallazgo relevante debido a que numerosos procesos neurodegenerativos se encuentran asociados con estados de neuroinflamación, los cuales han sido propuestos como posibles impulsores de la neurotoxicidad mediada por astrocitos \[1,3\]. Asimismo, estos resultados permiten plantear la hipótesis de una posible disminución de la plasticidad cerebral asociada al consumo de alcohol, reflejada por la subregulación de genes relacionados con la división celular en células astrogliales.
 
 Finalmente, el análisis realizado mediante `STRING` permitió integrar los resultados obtenidos por GO y GSEA dentro de una red de interacciones proteína-proteína sustentadas tanto por evidencia experimental como por asociaciones inferidas. Estas interacciones sugieren la existencia de un programa transcripcional coordinado relacionado con procesos inflamatorios y su influencia sobre distintos componentes celulares, como la matriz extracelular y el citoesqueleto. En conjunto, estos resultados apuntan hacia mecanismos asociados con la respuesta al daño celular y la toxicidad inducida por la exposición crónica al etanol.
 
